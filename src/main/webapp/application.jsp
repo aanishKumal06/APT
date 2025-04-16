@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/global_for_client.css">
 </head>
 <body>
   <!-- Header -->
@@ -107,7 +108,7 @@
             <div class="form-group">
               <label for="gender">Gender *</label>
               <select id="gender" class="form-control" required>
-                <option value="">Select Gender</option>
+                <option value="" disabled selected>Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
@@ -167,7 +168,7 @@
             <div class="form-group">
               <label for="duration">Duration of Stay *</label>
               <select id="duration" class="form-control" required>
-                <option value="">Select Duration</option>
+                <option value="" disabled selected>Select Duration</option>
                 <option value="1-month">1 Month</option>
                 <option value="3-months">3 Months</option>
                 <option value="6-months">6 Months</option>

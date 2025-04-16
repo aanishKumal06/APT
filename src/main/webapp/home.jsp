@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Marshmallow Haven</title>
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/footer.css">
+  
+  <link rel="stylesheet" href="css/global_for_client.css">
   <link rel="stylesheet" href="css/rooms.css">
   <link rel="stylesheet" href="css/home.css">
   <title>Marshmallow Haven</title>
