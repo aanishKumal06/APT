@@ -5,26 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/global_for_client.css">
+ <link rel="stylesheet" href="css/rooms.css">
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container header-content">
       <div class="logo-container">
-        <a href="index.html" class="logo"> <img src="img/logo.png" alt=""></a>
-        <a href="index.html" class="logo-text">Marshmallow Haven</a>
+        <a href="home.jsp" class="logo"> <img src="img/logo.png" alt=""></a>
+        <a href="home.jsp" class="logo-text">Marshmallow Haven</a>
       </div>
     
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="rooms.html">Rooms</a></li>
-          <li><a href="hostel-rules.html">Rules</a></li>
+          <li><a href="home.jsp">Home</a></li>
+          <li><a href="rooms.jsp">Rooms</a></li>
+          <li><a href="hostel-rules.jsp">Rules</a></li>
           <li><a href="#">About us</a></li>
           <li class="notification-icon">
             <div class="notification-container">
               <span class="notification-count">3</span>
-              <span class="icon">📬</span>
+              <i class="fas fa-bell"></i>
               <div class="notification-dropdown">
                 <div class="notification-item">
                   <h4>Room Inspection</h4>
@@ -55,9 +57,9 @@
                   </div>
                 </div>
                 <ul class="profile-menu">
-                  <li><a href="student-dashboard.html">My Profile</a></li>
-                  <li><a href="complaint.html">Complaint</a></li>
-                  <li><a href="index.html">Logout</a></li>
+                  <li><a href="student-dashboard.jsp">My Profile</a></li>
+                  <li><a href="complaint.jsp">Complaint</a></li>
+                  <li><a href="home.jsp">Logout</a></li>
                 </ul>
               </div>
             </div>
@@ -133,21 +135,21 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <h3>Campus Nest</h3>
+          <h3>Marshmallow Haven</h3>
           <p>Your Home Away From Home</p>
         </div>
         <div class="footer-links">
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="student-dashboard.html">Dashboard</a></li>
-            <li><a href="rooms.html">Rooms</a></li>
-            <li><a href="hostel-rules.html">Rules</a></li>
-            <li><a href="complaint.html">Complaint</a></li>
+            <li><a href="home.jsp">Home</a></li>
+            <li><a href="student-dashboard.jsp">Dashboard</a></li>
+            <li><a href="rooms.jsp">Rooms</a></li>
+            <li><a href="hostel-rules.jsp">Rules</a></li>
+            <li><a href="complaint.jsp">Complaint</a></li>
           </ul>
         </div>
       </div>
       <div class="copyright">
-        <p>&copy; 2025 Campus Nest. All rights reserved.</p>
+        <p>&copy; 2025 Marshmallow Haven. All rights reserved.</p>
       </div>
     </div>
   </footer>

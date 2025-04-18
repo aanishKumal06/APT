@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>Marshmallow Haven</title>
   
-  <link rel="stylesheet" href="css/global_for_client.css">
-  <link rel="stylesheet" href="css/rooms.css">
-  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global_for_client.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rooms.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
   <title>Marshmallow Haven</title>
-  <link rel="icon" type="image/png" href="img/b_logo.png" />
+  <link rel="icon" type="${pageContext.request.contextPath}/image/png" href="img/b_logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -19,8 +19,8 @@
     <div class="container header-content">
 
       <div class="logo-container">
-        <a href="index.html" class="logo"> <img src="img/logo.png" alt=""></a>
-        <a href="index.html" class="logo-text">Marshmallow Haven</a>
+        <a href="home.jsp" class="logo"> <img src="img/logo.png" alt=""></a>
+        <a href="home.jsp" class="logo-text">Marshmallow Haven</a>
       </div>
     
       <nav>
@@ -54,19 +54,19 @@
           </li>
           <li class="profile-icon">
             <div class="profile-container">
-              <img src="img/profile.jpg" alt="Profile" class="mini-profile-pic">
+              <img src="${pageContext.request.contextPath}/img/profile.jpg" alt="Profile" class="mini-profile-pic">
               <div class="profile-dropdown">
                 <div class="profile-header">
-                  <img src="img/profile.jpg" alt="Profile" class="mini-profile-pic">
+                  <img src="${pageContext.request.contextPath}/img/profile.jpg" alt="Profile" class="mini-profile-pic">
                   <div>
                     <h4>Hema Gurung</h4>
                   
                   </div>
                 </div>
                 <ul class="profile-menu">
-                  <li><a href="student-dashboard.html">My Profile</a></li>
-                  <li><a href="complaint.html">Complaint</a></li>
-                  <li><a href="index.html">Logout</a></li>
+                  <li><a href="student-dashboard.jsp">My Profile</a></li>
+                  <li><a href="complaint.jsp">Complaint</a></li>
+                  <li><a href="home.jsp">Logout</a></li>
                 </ul>
               </div>
             </div>
@@ -81,7 +81,7 @@
     <div class="container">
       <h1>Welcome to Marshmallow Haven</h1>
       <p>Your home away from home. We provide comfortable, safe, and affordable accommodation for students.</p>
-      <a href="rooms.html" class="btn">View Rooms </a>
+      <a href="room.jsp" class="btn">View Rooms </a>
     </div>
   </section>
 
@@ -91,7 +91,7 @@
       
       <div class="room-list">
         <div class="room-card">
-          <img src="img/Screenshot 2025-04-03 185359.png"alt="Single Room" class="room-image">
+          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"alt="Single Room" class="room-image">
           <div class="room-details">
             <h3 class="room-type">Single Occupancy Room (AC)</h3>
             <div class="room-specs">
@@ -105,12 +105,12 @@
               <span class="facility">Study Table</span>
               <span class="facility">Wardrobe</span>
             </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.html" class="btn">Apply Now</a>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
           </div>
         </div>
         
         <div class="room-card">
-          <img src="img/Screenshot 2025-04-03 185359.png" alt="Double Room" class="room-image">
+          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png" alt="Double Room" class="room-image">
           <div class="room-details">
             <h3 class="room-type">Double Occupancy Room (AC)</h3>
             <div class="room-specs">
@@ -124,12 +124,12 @@
               <span class="facility">2 Study Tables</span>
               <span class="facility">2 Wardrobes</span>
             </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.html" class="btn">Apply Now</a>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
           </div>
         </div>
         
         <div class="room-card">
-          <img src="img/Screenshot 2025-04-03 185359.png" alt="Single Non-AC Room" class="room-image">
+          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png" alt="Single Non-AC Room" class="room-image">
           <div class="room-details">
             <h3 class="room-type">Single Occupancy Room (Non-AC)</h3>
             <div class="room-specs">
@@ -144,7 +144,7 @@
               <span class="facility">Wardrobe</span>
               <span class="facility">Ceiling Fan</span>
             </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.html" class="btn">Apply Now</a>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
           </div>
         </div>
         
@@ -162,7 +162,7 @@
     <div class="container">
 
       
-      <h2 class="section-title">Why Choose Campus Nest?</h2>
+      <h2 class="section-title">Why Choose Marshmallow Haven?</h2>
       
       <div class="card-container">
         <div class="card">
@@ -197,7 +197,7 @@
             <p>Browse through available rooms, check occupancy status, and view room features and amenities.</p>
           </div>
           <div class="card-footer">
-            <a href="rooms.html" class="btn">View Rooms</a>
+            <a href="rooms.jsp" class="btn">View Rooms</a>
           </div>
         </div>
         
@@ -207,7 +207,7 @@
             <p>Access information about hostel fees, payment schedules, and understand our hostel rules and policies.</p>
           </div>
           <div class="card-footer">
-            <a href="hostel-rules.html" class="btn">Learn More</a>
+            <a href="hostel-rules.jsp" class="btn">Learn More</a>
           </div>
         </div>
         
@@ -217,7 +217,7 @@
             <p>Apply online for hostel accommodation, track your application status, and receive important notifications.</p>
           </div>
           <div class="card-footer">
-            <a href="application.html" class="btn">Apply Now</a>
+            <a href="application.jsp" class="btn">Apply Now</a>
           </div>
         </div>
       </div>
@@ -229,21 +229,21 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <h3>Campus Nest</h3>
+          <h3>Marshmallow Haven</h3>
           <p>Your Home Away From Home</p>
         </div>
         <div class="footer-links">
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="student-dashboard.html">Dashboard</a></li>
-            <li><a href="rooms.html">Rooms</a></li>
-            <li><a href="hostel-rules.html">Rules</a></li>
-            <li><a href="complaint.html">Complaint</a></li>
+            <li><a href="home.jsp">Home</a></li>
+            <li><a href="student-dashboard.jsp">Dashboard</a></li>
+            <li><a href="rooms.jsp">Rooms</a></li>
+            <li><a href="hostel-rules.jsp">Rules</a></li>
+            <li><a href="complaint.jsp">Complaint</a></li>
           </ul>
         </div>
       </div>
       <div class="copyright">
-        <p>&copy; 2025 Campus Nest. All rights reserved.</p>
+        <p>&copy; 2025 Marshmallow Haven. All rights reserved.</p>
       </div>
     </div>
   </footer>

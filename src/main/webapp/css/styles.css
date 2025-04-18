@@ -45,7 +45,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    color: #1e40af;
+    color:#1a3c5a;
   }
   
   .sidebar-collapsed .sidebar-logo h2 {
@@ -68,7 +68,8 @@
   
   .nav-item:hover, .nav-item.active {
     background-color: #f3f4f6;
-    color: #1e40af;
+    color: #1a3c5a;
+    
   }
   
   .sidebar-collapsed .nav-item span {
@@ -384,7 +385,7 @@
   }
   
   .btn-primary {
-    background-color: #1e40af;
+    background-color: #1a3c5a;
     color: white;
   }
   
@@ -569,11 +570,11 @@
   }
   
   .tab-button:hover {
-    color: #1e40af;
+    color: #1a3c5a;
   }
   
   .tab-button.active {
-    color: #1e40af;
+    color: #1a3c5a;
     border-bottom-color: #1e40af;
   }
   
@@ -604,9 +605,9 @@
   }
   
   .btn-page.active {
-    background-color: #1e40af;
+    background-color: #1a3c5a;
     color: white;
-    border-color: #1e40af;
+    border-color: #1a3c5a;
   }
   
   .btn-page.disabled {

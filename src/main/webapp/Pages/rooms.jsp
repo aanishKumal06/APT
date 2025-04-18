@@ -5,26 +5,110 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/global_for_client.css">
+ <link rel="stylesheet" href="css/rooms.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+.main-content {
+    padding: 3rem 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    color: #1a3c5a;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e6f2ff;
+    padding-bottom: 0.5rem;
+  }
+  
+  .form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #1a3c5a;
+    box-shadow: 0 0 0 2px rgba(26, 60, 90, 0.2);
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+  }  
+  
+  .btn {
+    display: inline-block;
+    background-color: #1a3c5a;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #2c5a85;
+  }
+  
+</style>
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container header-content">
       <div class="logo-container">
-        <a href="index.html" class="logo"> <img src="img/logo.png" alt=""></a>
-        <a href="index.html" class="logo-text">Marshmallow Haven</a>
+        <a href="home.jsp" class="logo"> <img src="img/logo.png" alt=""></a>
+        <a href="home.jsp" class="logo-text">Marshmallow Haven</a>
       </div>
     
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="rooms.html" class="active">Rooms</a></li>
-          <li><a href="hostel-rules.html">Rules</a></li>
+          <li><a href="home.jsp">Home</a></li>
+          <li><a href="rooms.jsp" class="active">Rooms</a></li>
+          <li><a href="hostel-rules.jsp">Rules</a></li>
           <li><a href="#">About us</a></li>
           <li class="notification-icon">
             <div class="notification-container">
               <span class="notification-count">3</span>
-              <span class="icon">📬</span>
+              <i class="fas fa-bell"></i>
               <div class="notification-dropdown">
                 <div class="notification-item">
                   <h4>Room Inspection</h4>
@@ -55,15 +139,14 @@
                   </div>
                 </div>
                 <ul class="profile-menu">
-                  <li><a href="student-dashboard.html">My Profile</a></li>
-                  <li><a href="complaint.html">Complaint</a></li>
-                  <li><a href="index.html">Logout</a></li>
+                  <li><a href="student-dashboard.jsp">My Profile</a></li>
+                  <li><a href="complaint.jsp">Complaint</a></li>
+                  <li><a href="login.jsp">Logout</a></li>
                 </ul>
               </div>
             </div>
           </li>
         </ul>
-      </nav>
     </div>
   </header>
 
@@ -120,7 +203,7 @@
               <span class="facility">Study Table</span>
               <span class="facility">Wardrobe</span>
             </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.html" class="btn">Apply Now</a>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
           </div>
         </div>
         
@@ -139,7 +222,7 @@
               <span class="facility">2 Study Tables</span>
               <span class="facility">2 Wardrobes</span>
             </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.html" class="btn">Apply Now</a>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
           </div>
         </div>
         
@@ -159,7 +242,7 @@
               <span class="facility">Wardrobe</span>
               <span class="facility">Ceiling Fan</span>
             </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.html" class="btn">Apply Now</a>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
           </div>
         </div>
         
@@ -179,7 +262,7 @@
               <span class="facility">2 Wardrobes</span>
               <span class="facility">Ceiling Fan</span>
             </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.html" class="btn">Apply Now</a>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
           </div>
         </div>
         
@@ -200,7 +283,7 @@
               <span class="facility">Mini Fridge</span>
               <span class="facility">TV</span>
             </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.html" class="btn">Apply Now</a>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
           </div>
         </div>
         
@@ -221,7 +304,7 @@
               <span class="facility">Mini Fridge</span>
               <span class="facility">TV</span>
             </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.html" class="btn">Apply Now</a>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
 
           </div>
           
@@ -235,21 +318,21 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <h3>Campus Nest</h3>
+          <h3>Marshmallow Haven</h3>
           <p>Your Home Away From Home</p>
         </div>
         <div class="footer-links">
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="student-dashboard.html">Dashboard</a></li>
-            <li><a href="rooms.html">Rooms</a></li>
-            <li><a href="hostel-rules.html">Rules</a></li>
-            <li><a href="complaint.html">Complaint</a></li>
+            <li><a href="home.jsp">Home</a></li>
+            <li><a href="student-dashboard.jsp">Dashboard</a></li>
+            <li><a href="rooms.jsp">Rooms</a></li>
+            <li><a href="hostel-rules.jsp">Rules</a></li>
+            <li><a href="complaint.jsp">Complaint</a></li>
           </ul>
         </div>
       </div>
       <div class="copyright">
-        <p>&copy; 2025 Campus Nest. All rights reserved.</p>
+        <p>&copy; 2025 Marshmallow Haven. All rights reserved.</p>
       </div>
     </div>
   </footer>

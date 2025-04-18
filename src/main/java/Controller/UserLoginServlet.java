@@ -57,15 +57,19 @@ public class UserLoginServlet extends HttpServlet {
 	            session.setAttribute("currentUser", user);
 	
 		        String role = user.getRole();
+		        
+		  
+
 		
 		        if ("admin".equalsIgnoreCase(role)) {
-		            response.sendRedirect("admin.jsp");
+		        	response.sendRedirect(request.getContextPath() + "/Pages/admin.jsp");
+		            
 		        } else  if ("student".equalsIgnoreCase(role)) {
-		            response.sendRedirect("home.jsp");
+		        	response.sendRedirect(request.getContextPath() + "/Pages/home.jsp");
 		        } 
 		    } else {
 		        request.setAttribute("error", "Invalid username or password");
-		        request.getRequestDispatcher("login.jsp").forward(request, response);
+		        request.getRequestDispatcher(request.getContextPath() +"/Pages/login.jsp").forward(request, response);
 		    }
 		}catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
