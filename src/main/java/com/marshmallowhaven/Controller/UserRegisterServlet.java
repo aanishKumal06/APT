@@ -35,9 +35,7 @@ public class UserRegisterServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-		
+	
 	 	String name = request.getParameter("fullname");
 	    String username = request.getParameter("username");
 	    String gender = request.getParameter("gender");
@@ -49,7 +47,7 @@ public class UserRegisterServlet extends HttpServlet {
 	    ArrayList<String> errors = new ArrayList<>();
 
 	    if (name == null || name.trim().isEmpty() || !name.matches("^[a-zA-Z]+$")) {
-	        errors.add("First name must contain only alphabetic characters and cannot be empty.");
+	        errors.add("Full name: Only letters, cannot be empty.");
 	    }
 
 	    if (username == null || username.length() <= 6 || !username.matches("^[a-zA-Z0-9]+$")) {
@@ -57,7 +55,7 @@ public class UserRegisterServlet extends HttpServlet {
 	    }
 	    
 	    if (password == null || password.length() <= 6 || !password.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*]).{7,}$")) {
-	        errors.add("Password must be longer than 6 characters and include at least one number, one uppercase letter, and one special character.");
+	        errors.add("Password: Must be >6 characters, include a number, uppercase letter, and special symbol (e.g., #, $).");
 	    }
 	    
 	    if (!password.equals(retypePassword)) {
@@ -109,18 +107,18 @@ public class UserRegisterServlet extends HttpServlet {
 		            response.sendRedirect(request.getContextPath() +"/Pages/login.jsp");
 		        } else {
 		            request.setAttribute("registrationError", "Registration failed. Please try again.");
-		            request.getRequestDispatcher(request.getContextPath() +"/Pages/register.jsp").forward(request, response);
+		            request.getRequestDispatcher("/Pages/register.jsp").forward(request, response);
 		        }
 
 		    } catch (ClassNotFoundException | SQLException e) {
 		        e.printStackTrace();
 		        request.setAttribute("registrationError", "Internal error. Please contact support.");
-		        request.getRequestDispatcher(request.getContextPath() +"/Pages/register.jsp").forward(request, response);
+		        request.getRequestDispatcher("/Pages/register.jsp").forward(request, response);
 		    }
 		} else {
 		    // Send error messages back to register.jsp
 		    request.setAttribute("errors", errors);
-		    request.getRequestDispatcher(request.getContextPath() +"/Pages/register.jsp").forward(request, response);
+		    request.getRequestDispatcher("/Pages/register.jsp").forward(request, response);
 		}
 
 		
