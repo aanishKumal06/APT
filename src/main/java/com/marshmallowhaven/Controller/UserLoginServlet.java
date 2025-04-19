@@ -45,13 +45,16 @@ public class UserLoginServlet extends HttpServlet {
             if (user != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("currentUser", user);
+                
 
                 String role = user.getRole();
+                
 
                 if ("admin".equalsIgnoreCase(role) || "staff".equalsIgnoreCase(role)) {
-                    response.sendRedirect("/Pages/admin.jsp");
+                    response.sendRedirect(request.getContextPath() +"/Pages/admin.jsp");
                 } else if ("student".equalsIgnoreCase(role)) {
-                    response.sendRedirect("/Pages/home.jsp");
+                	System.out.println(role);
+                    response.sendRedirect(request.getContextPath() +"/Pages/home.jsp");
                 }
             } else {
                 // Invalid login attempt

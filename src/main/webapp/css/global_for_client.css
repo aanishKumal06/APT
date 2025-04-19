@@ -83,7 +83,7 @@
     color: #b8d8ff;
   }
   
-  nav ul li a.active {
+  .nav-link.active {
     border-bottom: 2px solid #b8d8ff;
   }
   
@@ -175,31 +175,42 @@
     object-fit: cover;
   }
   
-  .profile-menu {
-    list-style: none;
-  }
-  
-  .profile-menu li {
-    margin: 0;
-  }
-  
-  .profile-menu li a {
-    display: block;
-    padding: 10px 15px;
-    color: #333;
-    border-bottom: 1px solid #eee;
-    transition: background-color 0.2s;
-  }
-  
-  .profile-menu li a:hover {
-    background-color: #f5f7fa;
-    color: #1a3c5a;
-  }
-  
-  .profile-menu li:last-child a {
-    border-bottom: none;
-  }
-  
+.profile-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-menu li {
+  margin: 0;
+}
+
+.profile-menu li a,
+.profile-menu li button {
+  all: unset; /* removes all default styling */
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  font: inherit;
+}
+
+.profile-menu li a:hover,
+.profile-menu li button:hover {
+  background-color: #f5f7fa;
+  color: #1a3c5a;
+}
+
+.profile-menu li:last-child a,
+.profile-menu li:last-child button {
+  border-bottom: none;
+}
+
   
   footer {
     background-color: #1a3c5a;

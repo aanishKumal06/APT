@@ -10,59 +10,68 @@ import javax.servlet.http.HttpSession;
 
 import com.marshmallowhaven.Model.User;
 
-@WebFilter(urlPatterns = { "/pages/*" })
+@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
-	
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// Initialization code if required (for example: reading init parameters)
-		System.out.println("AuthenticationFilter initialized");
-	}
+    public void init(FilterConfig filterConfig) {}
+    public void destroy() {}
 
-	@Override
-	public void destroy() {
-		// Cleanup code if required
-		System.out.println("AuthenticationFilter destroyed");
-	}
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
 
-		String uri = req.getRequestURI();
-		
-		// Check if logged in
-		HttpSession session = req.getSession(false);
-		boolean loggedIn = session != null && session.getAttribute("currentUser") != null;
+        String uri = req.getRequestURI();
+        HttpSession session = req.getSession(false);
 
-		if (!loggedIn && (uri.endsWith("login.jsp") || uri.endsWith("UserLoginServlet"))) {
-			chain.doFilter(request, response);
-			return;
-		}
-		// Skipping filter for login page and login controller
-		if (loggedIn) {
-			
-			User currentUser = (User) session.getAttribute("currentUser");
-		    String username = currentUser.getUsername(); 
-		    String role = currentUser.getRole(); 
-			System.out.println("Logged in as: " + username);
-			System.out.println("Role as: " + role);
-			
-	        if (uri.endsWith("login.jsp") || uri.endsWith("UserLoginServlet")||"admin".equalsIgnoreCase(role) || "staff".equalsIgnoreCase(role) ) {
-	        	res.sendRedirect(req.getContextPath() + "/Pages/admin.jsp");
-	            
-	        } else  if (uri.endsWith("login.jsp") || uri.endsWith("UserLoginServlet")||"student".equalsIgnoreCase(role)) {
-	        	res.sendRedirect(req.getContextPath() + "/Pages/home.jsp");
-	        }else {
-				chain.doFilter(request, response);
-				return;
-			}
-	        
-		} else {
-			res.sendRedirect(req.getContextPath() + "/pages/Login.jsp");
-		}
+        boolean isLoginRequest = uri.contains("login.jsp") || uri.contains("UserLoginServlet");
+        boolean isRegisterRequest = uri.contains("register.jsp");
+        boolean isStaticResource = uri.contains("/css/") || uri.contains("/js/") || uri.contains("/img/");
+        boolean isLoggedIn = session != null && session.getAttribute("currentUser") != null;
+        boolean isCustomer = uri.contains("/Pages/home.jsp") || uri.contains("/Pages/rooms.jsp") || uri.contains("/Pages/complaint.jsp") || uri.contains("/Pages/hostel-rules.jsp") ;
 
-	}
+        if (isStaticResource) {
+            chain.doFilter(request, response);
+            return;
+        }
+
+        if (isLoggedIn) {
+            User user = (User) session.getAttribute("currentUser");
+            String role = user.getRole().toLowerCase();
+
+            // Redirect logged-in users away from login page
+            if (isLoginRequest) {
+                if ("admin".equals(role) || "staff".equals(role)) {
+                    res.sendRedirect(req.getContextPath() + "/Pages/admin.jsp");
+                } else if ("custo".equals(role)) {
+                    res.sendRedirect(req.getContextPath() + "/Pages/home.jsp");
+                }
+                return;
+            }
+
+            // Role-based access control
+            if (uri.contains("/Pages/admin.jsp") && !"admin".equals(role)) {
+                res.sendRedirect(req.getContextPath() + "/Pages/home.jsp");
+                return;
+            }
+
+            if (isCustomer && !"customer".equals(role)) {
+                res.sendRedirect(req.getContextPath() + "/Pages/admin.jsp");
+                return;
+            }
+
+            // All checks passed, allow request
+            chain.doFilter(request, response);
+            return;
+
+        } else {
+            // Allow unauthenticated access to login and register pages
+            if (isLoginRequest || isRegisterRequest) {
+                chain.doFilter(request, response);
+            } else {
+                res.sendRedirect(req.getContextPath() + "/Pages/login.jsp");
+            }
+        }
+    }
 }

@@ -29,9 +29,9 @@ public class RegisterDAO {
 				ps = conn.prepareStatement(UserQueries.REGISTER_CLIENT);
 				ps.setString(1, user.getFullName());
 				ps.setString(2, user.getEmail());
-				ps.setString(4, user.getUsername());
-				ps.setString(3, user.getPassword()); // TODO Passwords should be hashed in real-world apps
-				ps.setString(4, user.getGender());
+				ps.setString(3, user.getUsername());
+				ps.setString(4, user.getPassword()); // TODO Passwords should be hashed in real-world apps
+				ps.setString(5, user.getGender());
 
 
 				if (ps.executeUpdate() > 0) {

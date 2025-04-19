@@ -38,6 +38,17 @@ public class User {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+    
+//    public User( String fullName, String email,
+//            String username, String password, String gender ) {
+//    this.fullName = fullName;
+//    this.email = email;
+//    this.username = username;
+//    this.password = password;
+//    this.gender = gender;
+//    }
+    
+    
 
     // Getters and Setters
     public int getUserId() {

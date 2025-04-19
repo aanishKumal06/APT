@@ -32,13 +32,13 @@
         <% } %>
         <form action="${pageContext.request.contextPath}/UserRegisterServlet" method="post">
           <div class="form-row">
-            <input class="form-group" type="text" name="fullname" placeholder="Full Name" required />
-            <input class="form-group" type="email" name="email" placeholder="Email" required />
+            <input class="form-group" type="text" name="fullname" placeholder="Full Name"  />
+            <input class="form-group" type="email" name="email" placeholder="Email"  />
           </div>
         
           <div class="form-row">
-            <input class="form-group" type="text" name="username" placeholder="Username" required />
-            <select class="form-group" name="gender" required>
+            <input class="form-group" type="text" name="username" placeholder="Username"  />
+            <select class="form-group" name="gender" >
               <option value="" disabled selected>Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -47,8 +47,8 @@
           </div>
         
           <div class="form-row">
-            <input class="form-group" type="password" name="password" placeholder="Password" required />
-            <input class="form-group" type="password" name="retypePassword" placeholder="Retype-password" required />
+            <input class="form-group" type="password" name="password" placeholder="Password"  />
+            <input class="form-group" type="password" name="retypePassword" placeholder="Retype-password"  />
           </div>
         
           <button type="submit">Register</button>

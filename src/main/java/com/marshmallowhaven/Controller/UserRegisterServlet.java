@@ -37,6 +37,7 @@ public class UserRegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	 	String name = request.getParameter("fullname");
+	 	System.out.println();
 	    String username = request.getParameter("username");
 	    String gender = request.getParameter("gender");
 	    String email = request.getParameter("email");
@@ -46,9 +47,10 @@ public class UserRegisterServlet extends HttpServlet {
 
 	    ArrayList<String> errors = new ArrayList<>();
 
-	    if (name == null || name.trim().isEmpty() || !name.matches("^[a-zA-Z]+$")) {
-	        errors.add("Full name: Only letters, cannot be empty.");
-	    }
+	    if (name == null || (!name.trim().matches("^[A-Za-z]+(?: [A-Za-z]+)+$"))) {
+         
+            errors.add("Full name: Requires at least first and last name (letters only, separated by spaces)");
+        }
 
 	    if (username == null || username.length() <= 6 || !username.matches("^[a-zA-Z0-9]+$")) {
 	        errors.add("Username must be at least 7 characters long and contain no special characters.");

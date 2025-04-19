@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,8 +25,8 @@
         <% } %>
 
         <form action="${pageContext.request.contextPath}/UserLoginServlet" method="post">
-          <input class="form-group" type="text" name="username" placeholder="Username" required />
-          <input class="form-group" type="password" name="password" placeholder="Password" required />
+          <input class="form-group" type="text" name="username" placeholder="Username"  />
+          <input class="form-group" type="password" name="password" placeholder="Password"  />
           <button type="submit">Login</button>
         </form>
 
