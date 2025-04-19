@@ -17,16 +17,20 @@
     <div class="right-panel">
       <div class="login-box">
         <h2>Log in</h2>
+        
+        <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+		<% if (errorMessage != null) { %>
+		    <div id="successMessage" style="color: red; "><%= errorMessage %></div>
+		<% } %>
+		
         <form action="${pageContext.request.contextPath}/UserLoginServlet" method="post">
           <input class="form-group" type="text" name="username" placeholder="Username"  />
           <input class="form-group" type="password" name="password" placeholder="Password"/>
-          <label class="remember">
-            <input type="checkbox" /> Remember me
-          </label>
+   
           <button type="submit">Login</button>
         </form>
         <p style="margin-top: 1rem; font-size: 0.9rem; ">
-            Don’t have an account? <a href="register.jsp">Register here</a>
+            Don’t have an account? <a href="/Pages/register.jsp">Register here</a>
         </p>
           
       </div>

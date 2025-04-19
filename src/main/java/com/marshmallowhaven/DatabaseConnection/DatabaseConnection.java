@@ -1,4 +1,4 @@
-package DatabaseConnection;
+package com.marshmallowhaven.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
