@@ -29,7 +29,8 @@ public class AuthenticationFilter implements Filter {
         boolean isRegisterRequest = uri.contains("register.jsp");
         boolean isStaticResource = uri.contains("/css/") || uri.contains("/js/") || uri.contains("/img/");
         boolean isLoggedIn = session != null && session.getAttribute("currentUser") != null;
-        boolean isCustomer = uri.contains("/Pages/home.jsp") || uri.contains("/Pages/rooms.jsp") || uri.contains("/Pages/complaint.jsp") || uri.contains("/Pages/hostel-rules.jsp") ;
+        boolean isCustomer = uri.contains("/Pages/home.jsp") || uri.contains("/Pages/rooms.jsp") || uri.contains("/Pages/complaint.jsp") || uri.contains("/Pages/hostel-rules.jsp")
+        						|| uri.contains("/Pages/application.jsp") || uri.contains("/Pages/footer.jsp") || uri.contains("/Pages/navbar.jsp") || uri.contains("/Pages/student-dashboard.jsp");
 
         if (isStaticResource) {
             chain.doFilter(request, response);
