@@ -1,74 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="css/global_for_client.css">
- <link rel="stylesheet" href="css/rooms.css">
+ <title>Complaint-Marshmallow Haven</title>
+
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/b_logo.png" />
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global_for_client.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/application.css">
 </head>
 <body>
   <!-- Header -->
-  <header>
-    <div class="container header-content">
-      <div class="logo-container">
-        <a href="home.jsp" class="logo"> <img src="img/logo.png" alt=""></a>
-        <a href="home.jsp" class="logo-text">Marshmallow Haven</a>
-      </div>
     
-      <nav>
-        <ul>
-          <li><a href="home.jsp">Home</a></li>
-          <li><a href="rooms.jsp">Rooms</a></li>
-          <li><a href="hostel-rules.jsp">Rules</a></li>
-          <li><a href="#">About us</a></li>
-          <li class="notification-icon">
-            <div class="notification-container">
-              <span class="notification-count">3</span>
-              <i class="fas fa-bell"></i>
-              <div class="notification-dropdown">
-                <div class="notification-item">
-                  <h4>Room Inspection</h4>
-                  <p>Room inspection scheduled for tomorrow at 10 AM.</p>
-                  <small>1 hour ago</small>
-                </div>
-                <div class="notification-item">
-                  <h4>Fees Reminder</h4>
-                  <p>Your next payment is due in 5 days.</p>
-                  <small>Yesterday</small>
-                </div>
-                <div class="notification-item">
-                  <h4>New Amenity</h4>
-                  <p>New gym equipment has been installed.</p>
-                  <small>2 days ago</small>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="profile-icon">
-            <div class="profile-container">
-              <img src="img/profile.jpg" alt="Profile" class="mini-profile-pic">
-              <div class="profile-dropdown">
-                <div class="profile-header">
-                  <img src="img/profile.jpg" alt="Profile" class="mini-profile-pic">
-                  <div>
-                    <h4>Hema Gurung</h4>
-                  </div>
-                </div>
-                <ul class="profile-menu">
-                  <li><a href="student-dashboard.jsp">My Profile</a></li>
-                  <li><a href="complaint.jsp">Complaint</a></li>
-                  <li><a href="home.jsp">Logout</a></li>
-                </ul>
-              </div>
-            </div>
-          </li>
-      
-        </ul>
-        </nav>
-        </div>
-   </header>
+<jsp:include page="/Pages/navbar.jsp"/>
 
   <!-- Main Content -->
   <section class="main-content">
@@ -122,7 +68,10 @@
 
           
           <div class="form-actions">
-            <button type="button" class="btn" style="background-color: #6c757d;">Cancel</button>
+           <a href="${pageContext.request.contextPath}/Pages/home.jsp"" class="btn" style="background-color: #6c757d; padding: 0.5rem 1rem; color: white; text-decoration: none; border-radius: 5px;">
+  						Cancel 
+          </a>
+
             <button type="submit" class="btn">Submit</button>
           </div>
         </form>
@@ -131,27 +80,6 @@
   </section>
   
   <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <h3>Marshmallow Haven</h3>
-          <p>Your Home Away From Home</p>
-        </div>
-        <div class="footer-links">
-          <ul>
-            <li><a href="home.jsp">Home</a></li>
-            <li><a href="student-dashboard.jsp">Dashboard</a></li>
-            <li><a href="rooms.jsp">Rooms</a></li>
-            <li><a href="hostel-rules.jsp">Rules</a></li>
-            <li><a href="complaint.jsp">Complaint</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>&copy; 2025 Marshmallow Haven. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+<jsp:include page="/Pages/footer.jsp"/>
 </body>
 </html>

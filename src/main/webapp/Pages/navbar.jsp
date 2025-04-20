@@ -24,9 +24,9 @@
     
       <nav>
         <ul>
-         <li><a href="home.jsp" class="nav-link ${activePage == 'home' ? 'active' : ''}">Home</a></li>
-		<li><a href="rooms.jsp" class="nav-link ${activePage == 'rooms' ? 'active' : ''}">Rooms</a></li>
-		<li><a href="hostel-rules.jsp" class="nav-link ${activePage == 'rules' ? 'active' : ''}">Rules</a></li>
+         <li><a href="${pageContext.request.contextPath}/Pages/home.jsp" class="nav-link ${activePage == 'home' ? 'active' : ''}">Home</a></li>
+		<li><a href="${pageContext.request.contextPath}/Pages/rooms.jsp" class="nav-link ${activePage == 'rooms' ? 'active' : ''}">Rooms</a></li>
+		<li><a href="${pageContext.request.contextPath}/Pages/hostel-rules.jsp" class="nav-link ${activePage == 'rules' ? 'active' : ''}">Rules</a></li>
 		<li><a href="#" class="nav-link ${activePage == 'about' ? 'active' : ''}">About us</a></li>
 
           <li class="notification-icon">
@@ -64,8 +64,8 @@
                   </div>
                 </div>
                 <ul class="profile-menu">
-				  <li><a href="student-dashboard.jsp">My Profile</a></li>
-				  <li><a href="complaint.jsp">Complaint</a></li>
+				  <li><a href="${pageContext.request.contextPath}/Pages/student-dashboard.jsp">My Profile</a></li>
+				  <li><a href="${pageContext.request.contextPath}/Pages/complaint.jsp">Complaint</a></li>
 				  <li>
 					  <form action="${pageContext.request.contextPath}/LogoutServlet" method="get" >
 					    <button type="submit">Logout</button>

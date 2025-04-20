@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 	<title>Hostel Admin Dashboard</title>
 </head>
@@ -24,29 +24,31 @@
           <i class="fas fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
-        <a href="applications.html" class="nav-item">
+        <a href="#" class="nav-item">
           <i class="fas fa-clipboard-list"></i>
           <span>Applications</span>
         </a>
-        <a href="rooms.html" class="nav-item">
+        <a href="#" class="nav-item">
           <i class="fas fa-bed"></i>
           <span>Rooms</span>
         </a>
-        <a href="notifications.html" class="nav-item">
+        <a href="#" class="nav-item">
           <i class="fas fa-bell"></i>
           <span>Notifications</span>
         </a>
-        <a href="rules.html" class="nav-item">
+        <a href="#" class="nav-item">
           <i class="fas fa-gavel"></i>
           <span>Rules</span>
         </a>
-        <a href="complaints.html" class="nav-item">
+        <a href="#" class="nav-item">
           <i class="fas fa-exclamation-circle"></i>
           <span>Complaints</span>
         </a>
         <a href="#" class="nav-item">
-          <i class="fas fa-sign-out-alt"></i>
-          <span>Logout</span>
+        	<form action="${pageContext.request.contextPath}/LogoutServlet" method="get" >
+        		<i class="fas fa-sign-out-alt"></i>
+			    <button type="submit">Logout</button>
+	        </form>
         </a>
       </div>
     </div>
@@ -221,8 +223,7 @@
       document.querySelector('.content').classList.toggle('content-expanded');
     });
   </script>
+
   
-  <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </body>
 </html>

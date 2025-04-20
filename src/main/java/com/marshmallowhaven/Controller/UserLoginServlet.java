@@ -48,11 +48,11 @@ public class UserLoginServlet extends HttpServlet {
                 
 
                 String role = user.getRole();
-                
+                System.out.println(role);
 
                 if ("admin".equalsIgnoreCase(role) || "staff".equalsIgnoreCase(role)) {
                     response.sendRedirect(request.getContextPath() +"/Pages/admin.jsp");
-                } else if ("student".equalsIgnoreCase(role)) {
+                } else if ("customer".equalsIgnoreCase(role)) {
                 	System.out.println(role);
                     response.sendRedirect(request.getContextPath() +"/Pages/home.jsp");
                 }

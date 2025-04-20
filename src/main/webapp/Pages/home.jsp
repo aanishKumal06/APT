@@ -16,19 +16,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <style>
-    .remove-button-style {
-      all: unset;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      padding: 8px 12px;
-    }
 
-    .remove-button-style:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
 
 <body>
@@ -67,7 +55,7 @@
             <span class="facility">Study Table</span>
             <span class="facility">Wardrobe</span>
           </div>
-          <a href="application.jsp" class="btn" style="text-align:center;">Apply Now</a>
+          <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
         </div>
       </div>
       
@@ -86,7 +74,7 @@
             <span class="facility">2 Study Tables</span>
             <span class="facility">2 Wardrobes</span>
           </div>
-          <a href="application.jsp" class="btn" style="text-align:center;">Apply Now</a>
+          <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
         </div>
       </div>
 
@@ -106,7 +94,7 @@
             <span class="facility">Wardrobe</span>
             <span class="facility">Ceiling Fan</span>
           </div>
-          <a href="application.jsp" class="btn" style="text-align:center;">Apply Now</a>
+          <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
         </div>
       </div>
 
@@ -181,28 +169,7 @@
 </section>
 
 <!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-logo">
-        <h3>Marshmallow Haven</h3>
-        <p>Your Home Away From Home</p>
-      </div>
-      <div class="footer-links">
-        <ul>
-          <li><a href="home.jsp">Home</a></li>
-          <li><a href="student-dashboard.jsp">Dashboard</a></li>
-          <li><a href="rooms.jsp">Rooms</a></li>
-          <li><a href="hostel-rules.jsp">Rules</a></li>
-          <li><a href="complaint.jsp">Complaint</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="copyright">
-      <p>&copy; 2025 Marshmallow Haven. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+<jsp:include page="/Pages/footer.jsp"/>
 
 </body>
 </html>

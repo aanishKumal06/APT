@@ -44,7 +44,7 @@ public class AuthenticationFilter implements Filter {
             if (isLoginRequest) {
                 if ("admin".equals(role) || "staff".equals(role)) {
                     res.sendRedirect(req.getContextPath() + "/Pages/admin.jsp");
-                } else if ("custo".equals(role)) {
+                } else if ("customer".equals(role)) {
                     res.sendRedirect(req.getContextPath() + "/Pages/home.jsp");
                 }
                 return;
