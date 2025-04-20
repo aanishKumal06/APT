@@ -26,7 +26,7 @@ public class AuthenticationFilter implements Filter {
         HttpSession session = req.getSession(false);
 
         boolean isLoginRequest = uri.contains("login.jsp") || uri.contains("UserLoginServlet");
-        boolean isRegisterRequest = uri.contains("register.jsp");
+        boolean isRegisterRequest = uri.contains("register.jsp") || uri.contains("UserRegisterServlet");
         boolean isStaticResource = uri.contains("/css/") || uri.contains("/js/") || uri.contains("/img/");
         boolean isLoggedIn = session != null && session.getAttribute("currentUser") != null;
         boolean isCustomer = uri.contains("/Pages/home.jsp") || uri.contains("/Pages/rooms.jsp") || uri.contains("/Pages/complaint.jsp") || uri.contains("/Pages/hostel-rules.jsp")

@@ -35,6 +35,7 @@ public class UserRegisterServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("123");
 	
 	 	String name = request.getParameter("fullname");
 	 	System.out.println();

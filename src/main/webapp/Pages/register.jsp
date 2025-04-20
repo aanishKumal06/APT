@@ -33,6 +33,7 @@
 
         <% } %>
         <form action="${pageContext.request.contextPath}/UserRegisterServlet" method="post">
+
           <div class="form-row">
             <input class="form-group" type="text" name="fullname" placeholder="Full Name"  />
             <input class="form-group" type="email" name="email" placeholder="Email"  />
