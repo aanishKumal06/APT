@@ -10,14 +10,14 @@
 
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/b_logo.png" />
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/b_logo.png" />
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global_for_client.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/student_dashboard.css">
+
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/student_dashboard.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <!-- Header -->
-  <jsp:include page="/Pages/navbar.jsp"/>
+<jsp:include page="/Pages/UserPages/Components/navbar.jsp"/>
   <!-- Main Content -->
   <section class="main-content">
     <div class="container">
@@ -25,7 +25,7 @@
       
       <div class="dashboard-container">
         <div class="profile-section">
-          <img src="img/profile.jpg" alt="Profile" class="mini-profile-pic">
+          <img src="${pageContext.request.contextPath}/img/profile.jpg" alt="Profile" class="mini-profile-pic">
           <h2>Hema Gurung</h2>
           <p>Student ID: ST123456</p>
           
@@ -37,9 +37,12 @@
             <p><span>Check-in Date:</span> <span>01/09/2024</span></p>
           </div>
           
-          <div class="profile-actions">
-            <a href="#" class="btn update-profile-btn">Update Profile</a>
-          </div>
+      	<div class="profile-actions">
+		  <form action="/update-profile" method="post">
+		    <button type="submit" class="btn update-profile-btn">Update Profile</button>
+		  </form>
+		</div>
+
         </div>
         
         <div class="status-section">
@@ -81,6 +84,6 @@
   </section>
   
   <!-- Footer -->
-  <jsp:include page="/Pages/footer.jsp"/>
+  <jsp:include page="/Pages/UserPages/Components/footer.jsp"/>
 </body>
 </html>

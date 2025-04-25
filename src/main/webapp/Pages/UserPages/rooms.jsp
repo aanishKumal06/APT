@@ -8,8 +8,8 @@
  <title>Rooms-Marshmallow Haven</title>
 
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/b_logo.png" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/global_for_client.css">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rooms.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/global_for_client.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/rooms.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -96,7 +96,7 @@
 <body>
   <!-- Header -->
   <c:set var="activePage" value="rooms" scope="request" />
-<jsp:include page="/Pages/navbar.jsp"/>
+<jsp:include page="/Pages/UserPages/Components/navbar.jsp"/>
 
 
   <!-- Main Content -->
@@ -254,15 +254,72 @@
               <span class="facility">TV</span>
             </div>
             <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-
           </div>
-          
         </div>
-      </div>
+  
+      
+              <div class="room-card">
+          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png" alt="Single Room" class="room-image">
+          <div class="room-details">
+            <h3 class="room-type">Single Occupancy Room (AC)</h3>
+            <div class="room-specs">
+              <span><strong>Room Number:</strong> A-101</span>
+              <span class="vacancy vacant">Vacant</span>
+            </div>
+            <p><strong>Monthly Fee:</strong> $350</p>
+            <div class="room-facilities">
+              <span class="facility">WiFi</span>
+              <span class="facility">Attached Bathroom</span>
+              <span class="facility">Study Table</span>
+              <span class="facility">Wardrobe</span>
+            </div>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
+          </div>
+        </div>
+        
+        <div class="room-card">
+          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"  alt="Double Room" class="room-image">
+          <div class="room-details">
+            <h3 class="room-type">Double Occupancy Room (AC)</h3>
+            <div class="room-specs">
+              <span><strong>Room Number:</strong> B-204</span>
+              <span class="vacancy full">Full</span>
+            </div>
+            <p><strong>Monthly Fee:</strong> $300 per student</p>
+            <div class="room-facilities">
+              <span class="facility">WiFi</span>
+              <span class="facility">Attached Bathroom</span>
+              <span class="facility">2 Study Tables</span>
+              <span class="facility">2 Wardrobes</span>
+            </div>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
+          </div>
+        </div>
+        
+        <div class="room-card">
+          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"  alt="Single Non-AC Room" class="room-image">
+          <div class="room-details">
+            <h3 class="room-type">Single Occupancy Room (Non-AC)</h3>
+            <div class="room-specs">
+              <span><strong>Room Number:</strong> C-105</span>
+              <span class="vacancy vacant">Vacant</span>
+            </div>
+            <p><strong>Monthly Fee:</strong> $250</p>
+            <div class="room-facilities">
+              <span class="facility">WiFi</span>
+              <span class="facility">Common Bathroom</span>
+              <span class="facility">Study Table</span>
+              <span class="facility">Wardrobe</span>
+              <span class="facility">Ceiling Fan</span>
+            </div>
+            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
+          </div>
+        </div>
+           </div>
     </div>
   </section>
   
   <!-- Footer -->
-<jsp:include page="/Pages/footer.jsp"/>
+  <jsp:include page="/Pages/UserPages/Components/footer.jsp"/>
 </body>
 </html>

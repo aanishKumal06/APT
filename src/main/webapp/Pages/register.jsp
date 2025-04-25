@@ -22,7 +22,8 @@
     <div class="right-panel">
       <div class="register-box">
         <h2>Register</h2>
-        <% ArrayList<String> errors = (ArrayList<String>) request.getAttribute("errors");
+        <%
+		ArrayList<String> errors = (ArrayList<String>) request.getAttribute("errors");
         if (errors != null && !errors.isEmpty()) { %>
 
             <ul style="color: red;">

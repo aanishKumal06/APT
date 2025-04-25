@@ -2,7 +2,12 @@ package com.marshmallowhaven.Controller;
 
 import java.io.IOException;
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.marshmallowhaven.Model.User;
 
-@WebFilter("/*")
+@WebFilter(urlPatterns = { "/Pages/*" })
 public class AuthenticationFilter implements Filter {
 
     public void init(FilterConfig filterConfig) {}
@@ -27,15 +32,10 @@ public class AuthenticationFilter implements Filter {
 
         boolean isLoginRequest = uri.contains("login.jsp") || uri.contains("UserLoginServlet");
         boolean isRegisterRequest = uri.contains("register.jsp") || uri.contains("UserRegisterServlet");
-        boolean isStaticResource = uri.contains("/css/") || uri.contains("/js/") || uri.contains("/img/");
+
         boolean isLoggedIn = session != null && session.getAttribute("currentUser") != null;
         boolean isCustomer = uri.contains("/Pages/home.jsp") || uri.contains("/Pages/rooms.jsp") || uri.contains("/Pages/complaint.jsp") || uri.contains("/Pages/hostel-rules.jsp")
         						|| uri.contains("/Pages/application.jsp") || uri.contains("/Pages/footer.jsp") || uri.contains("/Pages/navbar.jsp") || uri.contains("/Pages/student-dashboard.jsp");
-
-        if (isStaticResource) {
-            chain.doFilter(request, response);
-            return;
-        }
 
         if (isLoggedIn) {
             User user = (User) session.getAttribute("currentUser");
@@ -58,7 +58,7 @@ public class AuthenticationFilter implements Filter {
             }
 
             if (isCustomer && !"customer".equals(role)) {
-                res.sendRedirect(req.getContextPath() + "/Pages/admin.jsp");
+                res.sendRedirect(req.getContextPath() + "/Pages/AdminPages/admin-dashboard.jsp");
                 return;
             }
 

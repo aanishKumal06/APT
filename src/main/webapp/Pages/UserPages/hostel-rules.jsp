@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -8,13 +9,13 @@
  <title>Rules-Marshmallow Haven</title>
 
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/b_logo.png" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/global_for_client.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rules.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/global_for_client.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/rules.css">
 </head>
 <body>
   <!-- Header -->
     <c:set var="activePage" value="rules" scope="request" />
-<jsp:include page="/Pages/navbar.jsp"/>
+<jsp:include page="/Pages/UserPages/Components/navbar.jsp"/>
   <!-- Main Content -->
   <section class="main-content">
     <div class="container">
@@ -96,6 +97,5 @@
   </section>
   
   <!-- Footer -->
-<jsp:include page="/Pages/footer.jsp"/>
 </body>
 </html>

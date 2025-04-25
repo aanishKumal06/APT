@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.marshmallowhaven.DatabaseConnection.DatabaseConnection;
-import com.marshmallowhaven.Model.User;
 import com.marshmallowhaven.Model.UserQueries;
 
 public class UserExistsDAO {

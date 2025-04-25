@@ -1,72 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+	<title>Hostel Admin Dashboard</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-	<title>Hostel Admin Dashboard</title>
+
+	
 </head>
 <body>
+
+
   <div class="hostel-admin">
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <div class="sidebar-logo">
-          <i class="fas fa-building fa-2x"></i>
-          <h2>Hostel Admin</h2>
-        </div>
-      </div>
-      <div class="sidebar-nav">
-        <a href="admin.jsp" class="nav-item active">
-          <i class="fas fa-tachometer-alt"></i>
-          <span>Dashboard</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-clipboard-list"></i>
-          <span>Applications</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-bed"></i>
-          <span>Rooms</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-bell"></i>
-          <span>Notifications</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-gavel"></i>
-          <span>Rules</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-exclamation-circle"></i>
-          <span>Complaints</span>
-        </a>
-        <a href="#" class="nav-item">
-        	<form action="${pageContext.request.contextPath}/LogoutServlet" method="get" >
-        		<i class="fas fa-sign-out-alt"></i>
-			    <button type="submit">Logout</button>
-	        </form>
-        </a>
-      </div>
-    </div>
+   <c:set var="activePage" value="dashboard" scope="request" />
+ <jsp:include page="/Pages/AdminPages/Components/sidebar.jsp"/>
 
-    <!-- Main Content -->
-    <div class="content">
-      <div class="topbar">
-        <button id="toggleSidebar" class="toggle-sidebar">
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="user-info">
-          <span>Admin User</span>
-          <img src="img/profile.jpg" alt="Admin" class="avatar">
-        </div>
+      <!-- Main Content -->
+    <div class="content" id="content" >
+       <jsp:include page="/Pages/AdminPages/Components/topbar.jsp"/>
+       
+      <div class="page-header">
+        <h1>Dashboard</h1>
       </div>
-
-      <h1>Dashboard</h1>
       
+      
+
       <!-- Dashboard Stats -->
       <div class="dashboard-stats">
         <div class="stat-card">
@@ -148,9 +111,9 @@
           </thead>
           <tbody>
             <tr>
-              <td>Ayush Grg</td>
+              <td>John Doe</td>
               <td>Male</td>
-              <td>rgr.ayush@gmail.com</td>
+              <td>john.doe@example.com</td>
               <td><span class="badge badge-pending">Pending</span></td>
               <td>
                 <button class="btn-icon"><i class="fas fa-eye"></i></button>
@@ -159,18 +122,18 @@
               </td>
             </tr>
             <tr>
-              <td>Hema</td>
+              <td>Jane Smith</td>
               <td>Female</td>
-              <td>hema@example.com</td>
+              <td>jane.smith@example.com</td>
               <td><span class="badge badge-approved">Approved</span></td>
               <td>
                 <button class="btn-icon"><i class="fas fa-eye"></i></button>
               </td>
             </tr>
             <tr>
-              <td>Saji</td>
-              <td>Female</td>
-              <td>saji@example.com</td>
+              <td>Michael Johnson</td>
+              <td>Male</td>
+              <td>michael.j@example.com</td>
               <td><span class="badge badge-rejected">Rejected</span></td>
               <td>
                 <button class="btn-icon"><i class="fas fa-eye"></i></button>
@@ -216,14 +179,7 @@
     </div>
   </div>
 
-  <script>
-    // Simple JavaScript to toggle the sidebar
-    document.getElementById('toggleSidebar').addEventListener('click', function() {
-      document.getElementById('sidebar').classList.toggle('sidebar-collapsed');
-      document.querySelector('.content').classList.toggle('content-expanded');
-    });
-  </script>
 
-  
+
 </body>
 </html>

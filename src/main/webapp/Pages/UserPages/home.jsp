@@ -11,9 +11,9 @@
   <title>Marshmallow Haven</title>
 
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/b_logo.png" />
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global_for_client.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rooms.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/global_for_client.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/rooms.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 
@@ -24,14 +24,13 @@
 
 <!-- Header -->
 <c:set var="activePage" value="home" scope="request" />
-<jsp:include page="/Pages/navbar.jsp"/>
-
+<jsp:include page="/Pages/UserPages/Components/navbar.jsp"/>
 <!-- Hero Section -->
 <section class="hero">
   <div class="container">
     <h1>Welcome to Marshmallow Haven</h1>
     <p>Your home away from home. We provide comfortable, safe, and affordable accommodation for students.</p>
-    <a href="room.jsp" class="btn">View Rooms</a>
+    <a href="${pageContext.request.contextPath}/Pages/rooms.jsp" class="btn">View Rooms</a>
   </div>
 </section>
 
@@ -169,7 +168,6 @@
 </section>
 
 <!-- Footer -->
-<jsp:include page="/Pages/footer.jsp"/>
-
+  <jsp:include page="/Pages/UserPages/Components/footer.jsp"/>
 </body>
 </html>

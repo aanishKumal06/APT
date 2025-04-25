@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +8,13 @@
  <title>Complaint-Marshmallow Haven</title>
 
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/b_logo.png" />
- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global_for_client.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/application.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/global_for_client.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/application.css">
 </head>
 <body>
   <!-- Header -->
     
-<jsp:include page="/Pages/navbar.jsp"/>
+<jsp:include page="/Pages/UserPages/Components/navbar.jsp"/>
 
   <!-- Main Content -->
   <section class="main-content">
@@ -68,7 +68,7 @@
 
           
           <div class="form-actions">
-           <a href="${pageContext.request.contextPath}/Pages/home.jsp"" class="btn" style="background-color: #6c757d; padding: 0.5rem 1rem; color: white; text-decoration: none; border-radius: 5px;">
+           <a href="${pageContext.request.contextPath}/Pages/UserPages/home.jsp"" class="btn" style="background-color: #6c757d; padding: 0.5rem 1rem; color: white; text-decoration: none; border-radius: 5px;">
   						Cancel 
           </a>
 
@@ -80,6 +80,6 @@
   </section>
   
   <!-- Footer -->
-<jsp:include page="/Pages/footer.jsp"/>
+  <jsp:include page="/Pages/UserPages/Components/footer.jsp"/>
 </body>
 </html>
