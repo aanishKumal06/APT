@@ -9,7 +9,7 @@
 
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/b_logo.png" />
 
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login_register.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/login_register.css">
 </head>
 <body>
   <div class="container">

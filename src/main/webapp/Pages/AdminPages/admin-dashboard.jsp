@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 
 	<title>Hostel Admin Dashboard</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/AdminCss/styles.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 	
@@ -79,7 +79,7 @@
           <i class="fas fa-clipboard-list"></i>
           <h3>View Applications</h3>
         </a>
-        <a href="rooms.html" class="action-card">
+        <a href="rooms.jsp" class="action-card">
           <i class="fas fa-bed"></i>
           <h3>Manage Rooms</h3>
         </a>

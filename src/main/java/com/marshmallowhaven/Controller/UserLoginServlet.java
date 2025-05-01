@@ -54,7 +54,7 @@ public class UserLoginServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() +"/Pages/AdminPages/admin-dashboard.jsp");
                 } else if ("customer".equalsIgnoreCase(role)) {
                 	System.out.println(role);
-                    response.sendRedirect(request.getContextPath() +"/Pages/home.jsp");
+                    response.sendRedirect(request.getContextPath() +"/Pages/UserPages/home.jsp");
                 }
             } else {
                 // Invalid login attempt

@@ -23,15 +23,15 @@
         </div>
       </div>
       <div class="sidebar-nav">
-        <a href="index.html" class="nav-item ${activePage == 'dashboard' ? 'active' : ''}">
+        <a href="${pageContext.request.contextPath}/Pages/AdminPages/admin-dashboard.jsp" class="nav-item ${activePage == 'dashboard' ? 'active' : ''}">
           <i class="fas fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
-        <a href="applications.html" class="nav-item ${activePage == 'applications' ? 'active' : ''}">
+        <a href="${pageContext.request.contextPath}/Pages/AdminPages/application-management.jsp" class="nav-item ${activePage == 'applications' ? 'active' : ''}">
           <i class="fas fa-clipboard-list"></i>
           <span>Applications</span>
         </a>
-        <a href="rooms.html" class="nav-item ${activePage == 'rooms' ? 'active' : ''}">
+        <a href="${pageContext.request.contextPath}/Pages/AdminPages/room-management.jsp" class="nav-item ${activePage == 'rooms' ? 'active' : ''}">
           <i class="fas fa-bed"></i>
           <span>Rooms</span>
         </a>
@@ -43,7 +43,7 @@
           <i class="fas fa-gavel"></i>
           <span>Rules</span>
         </a>
-        <a href="complaints.html" class="nav-item ${activePage == 'complaints' ? 'active' : ''}">
+        <a href="${pageContext.request.contextPath}/Pages/AdminPages/complaint-management.jsp" class="nav-item ${activePage == 'complaints' ? 'active' : ''}">
           <i class="fas fa-exclamation-circle"></i>
           <span>Complaints</span>
         </a>

@@ -34,8 +34,10 @@ public class AuthenticationFilter implements Filter {
         boolean isRegisterRequest = uri.contains("register.jsp") || uri.contains("UserRegisterServlet");
 
         boolean isLoggedIn = session != null && session.getAttribute("currentUser") != null;
-        boolean isCustomer = uri.contains("/Pages/home.jsp") || uri.contains("/Pages/rooms.jsp") || uri.contains("/Pages/complaint.jsp") || uri.contains("/Pages/hostel-rules.jsp")
-        						|| uri.contains("/Pages/application.jsp") || uri.contains("/Pages/footer.jsp") || uri.contains("/Pages/navbar.jsp") || uri.contains("/Pages/student-dashboard.jsp");
+        boolean isCustomer = uri.contains("/Pages/UserPages/home.jsp") || uri.contains("/Pages/UserPages/rooms.jsp") || uri.contains("/Pages/UserPages/complaint.jsp") || uri.contains("/Pages/UserPages/hostel-rules.jsp")
+        						|| uri.contains("/Pages/UserPages/application.jsp") || uri.contains("/Pages/UserPages/footer.jsp") || uri.contains("/Pages/UserPages/navbar.jsp") || uri.contains("/Pages/UserPages/student-dashboard.jsp");
+        
+        boolean isAdmin =  uri.contains("/Pages/AdminPages/admin-dashboard.jsp") || uri.contains("/Pages/AdminPages/room-management.jsp") ;
 
         if (isLoggedIn) {
             User user = (User) session.getAttribute("currentUser");
@@ -44,21 +46,22 @@ public class AuthenticationFilter implements Filter {
             // Redirect logged-in users away from login page
             if (isLoginRequest) {
                 if ("admin".equals(role) || "staff".equals(role)) {
-                    res.sendRedirect(req.getContextPath() + "/Pages/admin.jsp");
+                    res.sendRedirect(req.getContextPath() + "/Pages/AdminPages/admin.jsp");
                 } else if ("customer".equals(role)) {
-                    res.sendRedirect(req.getContextPath() + "/Pages/home.jsp");
+                    res.sendRedirect(req.getContextPath() + "/Pages/UserPages/home.jsp");
                 }
                 return;
             }
 
             // Role-based access control
-            if (uri.contains("/Pages/admin.jsp") && !"admin".equals(role)) {
-                res.sendRedirect(req.getContextPath() + "/Pages/home.jsp");
-                return;
-            }
-
-            if (isCustomer && !"customer".equals(role)) {
+            if (isAdmin && !"admin".equals(role)) {
                 res.sendRedirect(req.getContextPath() + "/Pages/AdminPages/admin-dashboard.jsp");
+                return;
+                
+            }
+            if (isCustomer && !"customer".equals(role)) {
+    
+                res.sendRedirect(req.getContextPath() + "/Pages/UserPages/home.jsp");
                 return;
             }
 

@@ -1,25 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Room Management - Hostel Admin</title>
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/styles.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/AdminCss/sidebar.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/AdminCss/topbar.css">
 </head>
 <body>
   <div class="hostel-admin">
-   <c:set var="activePage" value="dashboard" scope="request" />
- <jsp:include page="/Pages/AdminPages/Components/sidebar.jsp"/>
+     <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <button id="toggleSidebar" class="toggle-sidebar">
+          <i class="fas fa-building fa-2x"></i>
+          <h2>Hostel Admin</h2>
+        </button>
+      </div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="index.html" class="nav-item active">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="applications.html" class="nav-item">
+        <i class="fas fa-clipboard-list"></i>
+        <span>Applications</span>
+      </a>
+      <a href="rooms.html" class="nav-item">
+        <i class="fas fa-bed"></i>
+        <span>Rooms</span>
+      </a>
+      <a href="notifications.html" class="nav-item">
+        <i class="fas fa-bell"></i>
+        <span>Notifications</span>
+      </a>
+      <a href="rules.html" class="nav-item">
+        <i class="fas fa-gavel"></i>
+        <span>Rules</span>
+      </a>
+      <a href="complaints.html" class="nav-item">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>Complaints</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+  </div>
 
-      <!-- Main Content -->
-    <div class="content" id="content" >
-       <jsp:include page="/Pages/AdminPages/Components/topbar.jsp"/>
+  <!-- Main Content -->
+  <div class="content">
+    <div class="topbar">
+      <h1>Marshmallow Haven</h1>
+      <div class="user-info">
+        <span>Admin User</span>
+        <img src="https://via.placeholder.com/40" alt="Admin" class="avatar">
+      </div>
+    </div>
 
       <div class="page-header">
         <h1>Room Management</h1>
@@ -303,6 +347,17 @@
           </div>
         </form>
       </div>
+    
+
+   <h2>Upload an Image</h2>
+    <form action="UploadPhotoServlet" method="post" enctype="multipart/form-data">
+        Select image to upload: <br>
+        <input type="file" name="image"><br><br>
+        <input type="submit" value="Upload">
+    </form>
+    
+    
+
       <div class="modal-footer">
         <button class="btn btn-outline" onclick="closeModal('addRoomModal')">Cancel</button>
         <button class="btn btn-primary">Add Room</button>
