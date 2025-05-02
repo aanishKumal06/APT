@@ -596,12 +596,21 @@
   }
   
   .modal-footer {
-    padding: 1rem 1.5rem;
-    border-top: 1px solid #e5e7eb;
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
+	  padding: 1rem 1.5rem;
+	  border-top: 1px solid #e5e7eb;
+	  display: flex;
+	  justify-content: flex-start; /* Aligns buttons to the left */
+	  gap: 0.75rem;
   }
+  
+  
+  .modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end; /* Aligns buttons to the right */
+  gap: 0.75rem;
+}
   
   .close-btn {
     background: none;

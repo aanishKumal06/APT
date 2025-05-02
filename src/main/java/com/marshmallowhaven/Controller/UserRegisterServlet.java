@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.marshmallowhaven.DAO.RegisterDAO;
 import com.marshmallowhaven.DAO.UserExistsDAO;
 import com.marshmallowhaven.Model.User;
+import com.marshmallowhaven.util.EncryptDecrypt;
 
 
 /**
@@ -75,7 +76,7 @@ public class UserRegisterServlet extends HttpServlet {
 		    }
 
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block+
 			e.printStackTrace();
 		}
 

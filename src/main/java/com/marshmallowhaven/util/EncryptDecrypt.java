@@ -1,4 +1,4 @@
-package com.marshmallowhaven.Controller;
+package com.marshmallowhaven.util;
 
 import java.nio.charset.StandardCharsets;
 import java.security.spec.KeySpec;

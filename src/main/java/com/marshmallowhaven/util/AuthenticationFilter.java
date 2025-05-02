@@ -1,4 +1,4 @@
-package com.marshmallowhaven.Controller;
+package com.marshmallowhaven.util;
 
 import java.io.IOException;
 
@@ -37,7 +37,7 @@ public class AuthenticationFilter implements Filter {
         boolean isCustomer = uri.contains("/Pages/UserPages/home.jsp") || uri.contains("/Pages/UserPages/rooms.jsp") || uri.contains("/Pages/UserPages/complaint.jsp") || uri.contains("/Pages/UserPages/hostel-rules.jsp")
         						|| uri.contains("/Pages/UserPages/application.jsp") || uri.contains("/Pages/UserPages/footer.jsp") || uri.contains("/Pages/UserPages/navbar.jsp") || uri.contains("/Pages/UserPages/student-dashboard.jsp");
         
-        boolean isAdmin =  uri.contains("/Pages/AdminPages/admin-dashboard.jsp") || uri.contains("/Pages/AdminPages/room-management.jsp") ;
+        boolean isAdmin =  uri.contains("/Pages/AdminPages/admin-dashboard.jsp") || uri.contains("/Pages/AdminPages/room-management.jsp") ||uri.contains("/Pages/AdminPages/add-room.jsp");
 
         if (isLoggedIn) {
             User user = (User) session.getAttribute("currentUser");

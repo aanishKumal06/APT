@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.marshmallowhaven.Model.Room" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,216 +107,77 @@
       <h1 class="section-title">Room Details</h1>
       
       <div class="room-filters">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="room-type">Room Type</label>
-            <select id="room-type" class="form-control">
-              <option value="all">All Types</option>
-              <option value="single">Single Occupancy</option>
-              <option value="double">Double Occupancy</option>
-            </select>
+        <form id="room-filter-form" action="${pageContext.request.contextPath}/RoomDetailsServelt" method="GET">
+  <div class="form-row">
+    
+    <!-- Room Type Filter -->
+    <div class="form-group">
+      <label for="room-type">Room Type</label>
+      <select id="room-type" name="roomType" class="form-control">
+        <option value="all" <%= "all".equals(request.getAttribute("selectedRoomType")) ? "selected" : "" %>>All Types</option>
+        <option value="Single AC" <%= "Single AC".equals(request.getAttribute("selectedRoomType")) ? "selected" : "" %>>Single AC</option>
+        <option value="Single Non-AC" <%= "Single Non-AC".equals(request.getAttribute("selectedRoomType")) ? "selected" : "" %>>Single Non-AC</option>
+        <option value="Double AC" <%= "Double AC".equals(request.getAttribute("selectedRoomType")) ? "selected" : "" %>>Double AC</option>
+        <option value="Double Non-AC" <%= "Double Non-AC".equals(request.getAttribute("selectedRoomType")) ? "selected" : "" %>>Double Non-AC</option>
+      </select>
+    </div>
 
-          </div>
-          
-          <div class="form-group">
-            <label for="ac-type">AC/Non-AC</label>
-            <select id="ac-type" class="form-control">
-              <option value="all">All</option>
-              <option value="ac">AC</option>
-              <option value="non-ac">Non-AC</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="vacancy">Vacancy Status</label>
-            <select id="vacancy" class="form-control">
-              <option value="all">All</option>
-              <option value="vacant">Vacant</option>
-              <option value="full">Occupied</option>
-            </select>
-          </div>
-        </div>
+    <!-- Price Filter -->
+    <div class="form-group">
+      <label for="price">Price Range</label>
+      <select id="price" name="priceRange" class="form-control">
+        <option value="all" <%= "all".equals(request.getAttribute("selectedPriceRange")) ? "selected" : "" %>>All</option>
+        <option value="high" <%= "high".equals(request.getAttribute("selectedPriceRange")) ? "selected" : "" %>>High</option>
+        <option value="low" <%= "low".equals(request.getAttribute("selectedPriceRange")) ? "selected" : "" %>>Low</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="padding: 6px 12px; font-size: 16px; height: 40px; margin-top: 35px;">Apply Filters</button>
+
+  </div>
+</form>
+
+
       </div>
       
       <div class="room-list">
-        <div class="room-card">
-          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png" alt="Single Room" class="room-image">
-          <div class="room-details">
-            <h3 class="room-type">Single Occupancy Room (AC)</h3>
-            <div class="room-specs">
-              <span><strong>Room Number:</strong> A-101</span>
-              <span class="vacancy vacant">Vacant</span>
-            </div>
-            <p><strong>Monthly Fee:</strong> $350</p>
-            <div class="room-facilities">
-              <span class="facility">WiFi</span>
-              <span class="facility">Attached Bathroom</span>
-              <span class="facility">Study Table</span>
-              <span class="facility">Wardrobe</span>
-            </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-          </div>
-        </div>
-        
-        <div class="room-card">
-          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"  alt="Double Room" class="room-image">
-          <div class="room-details">
-            <h3 class="room-type">Double Occupancy Room (AC)</h3>
-            <div class="room-specs">
-              <span><strong>Room Number:</strong> B-204</span>
-              <span class="vacancy full">Full</span>
-            </div>
-            <p><strong>Monthly Fee:</strong> $300 per student</p>
-            <div class="room-facilities">
-              <span class="facility">WiFi</span>
-              <span class="facility">Attached Bathroom</span>
-              <span class="facility">2 Study Tables</span>
-              <span class="facility">2 Wardrobes</span>
-            </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-          </div>
-        </div>
-        
-        <div class="room-card">
-          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"  alt="Single Non-AC Room" class="room-image">
-          <div class="room-details">
-            <h3 class="room-type">Single Occupancy Room (Non-AC)</h3>
-            <div class="room-specs">
-              <span><strong>Room Number:</strong> C-105</span>
-              <span class="vacancy vacant">Vacant</span>
-            </div>
-            <p><strong>Monthly Fee:</strong> $250</p>
-            <div class="room-facilities">
-              <span class="facility">WiFi</span>
-              <span class="facility">Common Bathroom</span>
-              <span class="facility">Study Table</span>
-              <span class="facility">Wardrobe</span>
-              <span class="facility">Ceiling Fan</span>
-            </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-          </div>
-        </div>
-        
-        <div class="room-card">
-          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"  alt="Double Non-AC Room" class="room-image">
-          <div class="room-details">
-            <h3 class="room-type">Double Occupancy Room (Non-AC)</h3>
-            <div class="room-specs">
-              <span><strong>Room Number:</strong> D-302</span>
-              <span class="vacancy vacant">Vacant (1 bed)</span>
-            </div>
-            <p><strong>Monthly Fee:</strong> $200 per student</p>
-            <div class="room-facilities">
-              <span class="facility">WiFi</span>
-              <span class="facility">Common Bathroom</span>
-              <span class="facility">2 Study Tables</span>
-              <span class="facility">2 Wardrobes</span>
-              <span class="facility">Ceiling Fan</span>
-            </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-          </div>
-        </div>
-        
-        <div class="room-card">
-          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"  alt="Single Deluxe Room" class="room-image">
-          <div class="room-details">
-            <h3 class="room-type">Single Deluxe Room (AC)</h3>
-            <div class="room-specs">
-              <span><strong>Room Number:</strong> E-101</span>
-              <span class="vacancy vacant">Vacant</span>
-            </div>
-            <p><strong>Monthly Fee:</strong> $400</p>
-            <div class="room-facilities">
-              <span class="facility">WiFi</span>
-              <span class="facility">Attached Bathroom</span>
-              <span class="facility">Study Table</span>
-              <span class="facility">Wardrobe</span>
-              <span class="facility">Mini Fridge</span>
-              <span class="facility">TV</span>
-            </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-          </div>
-        </div>
-        
-        <div class="room-card">
-          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"  alt="Double Deluxe Room" class="room-image">
-          <div class="room-details">
-            <h3 class="room-type">Double Deluxe Room (AC)</h3>
-            <div class="room-specs">
-              <span><strong>Room Number:</strong> E-205</span>
-              <span class="vacancy full">Full</span>
-            </div>
-            <p><strong>Monthly Fee:</strong> $350 per student</p>
-            <div class="room-facilities">
-              <span class="facility">WiFi</span>
-              <span class="facility">Attached Bathroom</span>
-              <span class="facility">2 Study Tables</span>
-              <span class="facility">2 Wardrobes</span>
-              <span class="facility">Mini Fridge</span>
-              <span class="facility">TV</span>
-            </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-          </div>
-        </div>
-  
-      
-              <div class="room-card">
-          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png" alt="Single Room" class="room-image">
-          <div class="room-details">
-            <h3 class="room-type">Single Occupancy Room (AC)</h3>
-            <div class="room-specs">
-              <span><strong>Room Number:</strong> A-101</span>
-              <span class="vacancy vacant">Vacant</span>
-            </div>
-            <p><strong>Monthly Fee:</strong> $350</p>
-            <div class="room-facilities">
-              <span class="facility">WiFi</span>
-              <span class="facility">Attached Bathroom</span>
-              <span class="facility">Study Table</span>
-              <span class="facility">Wardrobe</span>
-            </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-          </div>
-        </div>
-        
-        <div class="room-card">
-          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"  alt="Double Room" class="room-image">
-          <div class="room-details">
-            <h3 class="room-type">Double Occupancy Room (AC)</h3>
-            <div class="room-specs">
-              <span><strong>Room Number:</strong> B-204</span>
-              <span class="vacancy full">Full</span>
-            </div>
-            <p><strong>Monthly Fee:</strong> $300 per student</p>
-            <div class="room-facilities">
-              <span class="facility">WiFi</span>
-              <span class="facility">Attached Bathroom</span>
-              <span class="facility">2 Study Tables</span>
-              <span class="facility">2 Wardrobes</span>
-            </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-          </div>
-        </div>
-        
-        <div class="room-card">
-          <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png"  alt="Single Non-AC Room" class="room-image">
-          <div class="room-details">
-            <h3 class="room-type">Single Occupancy Room (Non-AC)</h3>
-            <div class="room-specs">
-              <span><strong>Room Number:</strong> C-105</span>
-              <span class="vacancy vacant">Vacant</span>
-            </div>
-            <p><strong>Monthly Fee:</strong> $250</p>
-            <div class="room-facilities">
-              <span class="facility">WiFi</span>
-              <span class="facility">Common Bathroom</span>
-              <span class="facility">Study Table</span>
-              <span class="facility">Wardrobe</span>
-              <span class="facility">Ceiling Fan</span>
-            </div>
-            <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-          </div>
-        </div>
+                <%
+    // Get the list of rooms from the request attribute
+    		ArrayList<Room> roomList = (ArrayList<Room>) request.getAttribute("rooms");
+            		
+      		 if (roomList == null) {
+      	            response.sendRedirect(request.getContextPath() + "/RoomDetailsServelt"); // Replace with your actual servlet path
+      	            return;
+      	        }        	
+		%>
+      <% for (Room room : roomList) { %>
+		  <div class="room-card">
+		      <img src="<%=request.getAttribute("imgURL")+room.getImageUrl() %>" alt="<%= room.getRoomType() %>" class="room-image">
+		      <div class="room-details">
+		        <h3 class="room-type"><%= room.getRoomType() %></h3>
+		        <div class="room-specs">
+		          <span><strong>Room Number:</strong> <%= room.getRoomNumber() %></span>
+		         <span class="vacancy <%= room.getIsAvailable() == true ? "vacant" : "occupied" %>">
+				    <%= room.getIsAvailable() == true ? "Vacant" : "Occupied" %>
+				</span>
+
+		        </div>
+		        <p><strong>Monthly Fee:</strong> $<%= room.getMonthlyFee() %></p>
+		        
+		        <!-- Displaying facilities one by one -->
+		        <div class="room-facilities">
+		          <% 
+		              String[] facilities = room.getRoomFacilities().split(",");
+		              for (String facility : facilities) { 
+		          %>
+		              <div class="facility"><%= facility.trim() %></div>  <!-- Each facility on a new line -->
+		          <% } %>
+		        </div>
+		        
+		        <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp?roomId=<%= room.getRoomId() %>" class="btn">Apply Now</a>
+		      </div>
+		  </div>
+		<% } %>
            </div>
     </div>
   </section>

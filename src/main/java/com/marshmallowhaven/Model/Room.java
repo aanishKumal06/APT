@@ -10,16 +10,20 @@ public class Room {
     private String roomFacilities;
     private int capacity;
     private int currentOccupancy;
-    private double monthlyFee;
-    private boolean isAvailable;
+    private int monthlyFee;
+    private Boolean isAvailable;
     private String imageUrl;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private String floor;
+    private String roomStatus;
 
-    // Constructor
-    public Room(int roomId, String roomNumber, String roomType, String roomDescription, String roomFacilities,
-                int capacity, int currentOccupancy, double monthlyFee, boolean isAvailable,
-                String imageUrl, Timestamp createdAt, Timestamp updatedAt) {
+
+    // Full constructor
+    public Room(int roomId, String roomNumber, String roomType, String roomDescription,
+                String roomFacilities, int capacity, int currentOccupancy,
+                int monthlyFee, Boolean isAvailable, String imageUrl,
+                Timestamp createdAt, Timestamp updatedAt, String floor, String roomStatus) {
         this.roomId = roomId;
         this.roomNumber = roomNumber;
         this.roomType = roomType;
@@ -32,9 +36,26 @@ public class Room {
         this.imageUrl = imageUrl;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.floor = floor;
+        this.roomStatus = roomStatus;
+    }
+    
+    public Room(String roomNumber, String roomType, String floor, int monthlyFee,
+            String roomStatus, String roomFacilities, String imageUrl, String roomDescription, int capacity) {
+    this.roomNumber = roomNumber;
+    this.roomType = roomType;
+    this.floor = floor;
+    this.monthlyFee = monthlyFee;
+    this.roomStatus = roomStatus;
+    this.roomFacilities = roomFacilities;
+    this.imageUrl = imageUrl;
+    this.roomDescription = roomDescription;
+    this.capacity = capacity;
     }
 
-    // Getters and Setters
+
+
+	// Getters and Setters
     public int getRoomId() {
         return roomId;
     }
@@ -87,24 +108,24 @@ public class Room {
         return currentOccupancy;
     }
 
-    public void setCurrentOccupancy(int currentOccupancy) {
+    public void setCurrentOccupancy(Integer currentOccupancy) {
         this.currentOccupancy = currentOccupancy;
     }
 
-    public double getMonthlyFee() {
+    public int getMonthlyFee() {
         return monthlyFee;
     }
 
-    public void setMonthlyFee(double monthlyFee) {
+    public void setMonthlyFee(int monthlyFee) {
         this.monthlyFee = monthlyFee;
     }
 
-    public boolean isAvailable() {
+    public Boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setIsAvailable(Boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 
     public String getImageUrl() {
@@ -130,5 +151,23 @@ public class Room {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public String getRoomStatus() {
+        return roomStatus;
+    }
+
+    public void setRoomStatus(String roomStatus) {
+        this.roomStatus = roomStatus;
+    }
+
+    
 }
 

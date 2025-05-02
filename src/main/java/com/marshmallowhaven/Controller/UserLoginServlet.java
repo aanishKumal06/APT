@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.marshmallowhaven.DAO.LoginDAO;
 import com.marshmallowhaven.Model.User;
+import com.marshmallowhaven.util.EncryptDecrypt;
 
 /**
  * Servlet implementation class UserLoginServlet

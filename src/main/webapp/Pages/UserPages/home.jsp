@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+        <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.marshmallowhaven.Model.Room" %>
 
 
 <!DOCTYPE html>
@@ -38,64 +40,43 @@
 <section class="main-content">
   <div class="container">
     <div class="room-list">
-    
-      <div class="room-card">
-        <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png" alt="Single Room" class="room-image">
-        <div class="room-details">
-          <h3 class="room-type">Single Occupancy Room (AC)</h3>
-          <div class="room-specs">
-            <span><strong>Room Number:</strong> A-101</span>
-            <span class="vacancy vacant">Vacant</span>
-          </div>
-          <p><strong>Monthly Fee:</strong> $350</p>
-          <div class="room-facilities">
-            <span class="facility">WiFi</span>
-            <span class="facility">Attached Bathroom</span>
-            <span class="facility">Study Table</span>
-            <span class="facility">Wardrobe</span>
-          </div>
-          <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-        </div>
-      </div>
-      
-      <div class="room-card">
-        <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png" alt="Double Room" class="room-image">
-        <div class="room-details">
-          <h3 class="room-type">Double Occupancy Room (AC)</h3>
-          <div class="room-specs">
-            <span><strong>Room Number:</strong> B-204</span>
-            <span class="vacancy vacant">Vacant</span>
-          </div>
-          <p><strong>Monthly Fee:</strong> $300 per student</p>
-          <div class="room-facilities">
-            <span class="facility">WiFi</span>
-            <span class="facility">Attached Bathroom</span>
-            <span class="facility">2 Study Tables</span>
-            <span class="facility">2 Wardrobes</span>
-          </div>
-          <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-        </div>
-      </div>
+    <%
+        // Get the list of rooms from the request attribute
+    		ArrayList<Room> roomList = (ArrayList<Room>) request.getAttribute("expensiveRooms");
+            		
+      		 if (roomList == null) {
+      	            response.sendRedirect(request.getContextPath() + "/TopExpensiveRoomServelt"); // Replace with your actual servlet path
+      	            return;
+      	        }        	
+		%>
+      <% for (Room room : roomList) { %>
+		  <div class="room-card">
+		      <img src="<%=request.getAttribute("imgURL")+room.getImageUrl() %>" alt="<%= room.getRoomType() %>" class="room-image">
+		      <div class="room-details">
+		        <h3 class="room-type"><%= room.getRoomType() %></h3>
+		        <div class="room-specs">
+		          <span><strong>Room Number:</strong> <%= room.getRoomNumber() %></span>
+		         <span class="vacancy <%= room.getIsAvailable() == true ? "vacant" : "occupied" %>">
+				    <%= room.getIsAvailable() == true ? "Vacant" : "Occupied" %>
+				</span>
 
-      <div class="room-card">
-        <img src="${pageContext.request.contextPath}/img/Screenshot 2025-04-03 185359.png" alt="Single Non-AC Room" class="room-image">
-        <div class="room-details">
-          <h3 class="room-type">Single Occupancy Room (Non-AC)</h3>
-          <div class="room-specs">
-            <span><strong>Room Number:</strong> C-105</span>
-            <span class="vacancy vacant">Vacant</span>
-          </div>
-          <p><strong>Monthly Fee:</strong> $250</p>
-          <div class="room-facilities">
-            <span class="facility">WiFi</span>
-            <span class="facility">Common Bathroom</span>
-            <span class="facility">Study Table</span>
-            <span class="facility">Wardrobe</span>
-            <span class="facility">Ceiling Fan</span>
-          </div>
-          <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp" class="btn">Apply Now</a>
-        </div>
-      </div>
+		        </div>
+		        <p><strong>Monthly Fee:</strong> $<%= room.getMonthlyFee() %></p>
+		        
+		        <!-- Displaying facilities one by one -->
+		        <div class="room-facilities">
+		          <% 
+		              String[] facilities = room.getRoomFacilities().split(",");
+		              for (String facility : facilities) { 
+		          %>
+		              <div class="facility"><%= facility.trim() %></div>  <!-- Each facility on a new line -->
+		          <% } %>
+		        </div>
+		        
+		        <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp?roomId=<%= room.getRoomId() %>" class="btn">Apply Now</a>
+		      </div>
+		  </div>
+		<% } %>
 
     </div>
   </div>
