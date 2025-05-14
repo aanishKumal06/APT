@@ -5,43 +5,41 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 import com.marshmallowhaven.DatabaseConnection.DatabaseConnection;
 import com.marshmallowhaven.Model.AdminQueries;
 
-public class RoomStatusCountDAO {
-
+public class ComplaintSatusCountDAO {
+	
 	private Connection conn;
 	private PreparedStatement ps;
 	// Constructor: Initializes the database connection when an object is created
-	public RoomStatusCountDAO() throws ClassNotFoundException, SQLException {
+	public ComplaintSatusCountDAO() throws ClassNotFoundException, SQLException {
 		this.conn = DatabaseConnection.getConnection();
 	}
-	public HashMap<String, Integer> getRoomStatusCounts() {
-	    HashMap<String, Integer> statusCounts = new HashMap<>();
+
+	public HashMap<String, Integer> getComplaintStatusCounts() {
+	    HashMap<String, Integer> complaintStatusCounts = new HashMap<>();
 
 
 	    try {
 	        // Get grouped status counts
-	        ps = conn.prepareStatement(AdminQueries.GET_ROOM_STATUS_COUNTS);
+	        ps = conn.prepareStatement(AdminQueries.GET_COMPLAINTS_STATUS_COUNTS);
 	        ResultSet rs = ps.executeQuery();
 	        while (rs.next()) {
-	            statusCounts.put(rs.getString("room_status"), rs.getInt("count"));
+	        	complaintStatusCounts.put(rs.getString("status"), rs.getInt("count"));
 	        }
 
 	        // Get total room count
-	        ps = conn.prepareStatement(AdminQueries.GET_TOTAL_ROOM_COUNT);
+	        ps = conn.prepareStatement(AdminQueries.GET_COMPLAINTS_COUNT);
 	        rs = ps.executeQuery();
 	        if (rs.next()) {
-	            statusCounts.put("Total", rs.getInt("total_rooms"));
+	        	complaintStatusCounts.put("Total", rs.getInt("total_complaints"));
 	        }
 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
-	    return statusCounts;
+	    return complaintStatusCounts;
 	}
-
-
 }

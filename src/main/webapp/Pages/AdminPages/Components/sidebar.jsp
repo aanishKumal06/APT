@@ -47,10 +47,14 @@
           <i class="fas fa-exclamation-circle"></i>
           <span>Complaints</span>
         </a>
-        <a href="#" class="nav-item ${activePage == 'logout' ? 'active' : ''}">
-          <i class="fas fa-sign-out-alt"></i>
-          <span>Logout</span>
-        </a>
+        
+
+		 <a href="${pageContext.request.contextPath}/LogoutServlet" class="nav-item ${activePage == 'logout' ? 'active' : ''}">
+		  <i class="fas fa-sign-out-alt"></i>
+		  <span>Logout</span>
+		</a>
+
+
       </div>
     </div>
     

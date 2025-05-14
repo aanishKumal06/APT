@@ -171,23 +171,8 @@
    font-size: 0.9rem;
  }
  
- .vacancy {
-   display: inline-block;
-   padding: 5px 10px;
-   border-radius: 4px;
-   font-weight: bold;
- }
- 
- .vacant {
-   background-color: #d4edda;
-   color: #155724;
- }
- 
- .full {
-   background-color: #f8d7da;
-   color: #721c24;
- }
- 
+
+
  /* Room hover details */
  .room-preview {
    position: relative;

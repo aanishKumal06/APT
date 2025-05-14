@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,23 +25,36 @@
     <div class="container">
       <h1 class="section-title">Student Dashboard</h1>
       
-      <div class="dashboard-container">
-        <div class="profile-section">
-          <img src="${pageContext.request.contextPath}/img/profile.jpg" alt="Profile" class="mini-profile-pic">
-          <h2>Hema Gurung</h2>
-          <p>Student ID: ST123456</p>
-          
-          <div class="profile-details">
-            <p><span>Gender:</span> <span>Female</span></p>
-            <p><span>Email:</span> <span>hema.grg@gmail.com</span></p>
-            <p><span>Contact:</span> <span>+1 123-456-7890</span></p>
-            <p><span>Room Number:</span> <span>B-204</span></p>
-            <p><span>Check-in Date:</span> <span>01/09/2024</span></p>
-          </div>
-          
+<div class="dashboard-container">
+    <div class="profile-section">
+    
+     <c:if test="${empty user}">
+
+      <c:redirect url="/UserProfileServlet" />
+     
+    </c:if>
+    
+        <c:forEach var="user" items="${user}">
+    <!-- Dynamically set the profile image URL -->
+    <img src="${imgURL}${user.profileImageUrl}" alt="Profile" class="mini-profile-pic">
+
+    <h2>${user.fullName}</h2>
+
+    <div class="profile-details">
+        <p><span>Gender:</span> <span>${user.gender}</span></p>
+        <p><span>Email:</span> <span>${user.email}</span></p>
+        <p><span>Contact:</span> <span>${user.contactNumber}</span></p>
+        <p><span>Address:</span> <span>${user.address}</span></p>
+        <p><span>Date of Birth:</span> 
+            <span>
+               <fmt:formatDate value="${user.dateOfBirth}" pattern="MMMM dd, yyyy" />
+            </span>
+        </p>
+    </div>
+       </c:forEach>  
       	<div class="profile-actions">
 		  <form action="/update-profile" method="post">
-		    <button type="submit" class="btn update-profile-btn">Update Profile</button>
+		    <a href="${pageContext.request.contextPath}/Pages/UserPages/application2.jsp" class="btn update-profile-btn">Update Profile</a>
 		  </form>
 		</div>
 

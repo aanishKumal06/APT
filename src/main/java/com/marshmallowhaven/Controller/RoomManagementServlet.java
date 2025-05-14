@@ -3,6 +3,7 @@ package com.marshmallowhaven.Controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,29 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.marshmallowhaven.DAO.RoomDetailsDAO;
+import com.marshmallowhaven.DAO.RoomStatusCountDAO;
 import com.marshmallowhaven.Model.Room;
 
 /**
  * Servlet implementation class RoomFilterServlet
  */
-@WebServlet("/RoomFilterServlet")
-public class RoomFilterServlet extends HttpServlet {
+@WebServlet("/RoomManagementrServlet")
+public class RoomManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RoomFilterServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String status = request.getParameter("roomStatus"); // e.g., vacant, occupied, maintenance
         RoomDetailsDAO dao;
+        RoomStatusCountDAO dao1; 
         System.out.println(status);
         
 		try {
@@ -48,7 +41,13 @@ public class RoomFilterServlet extends HttpServlet {
 
 		        request.setAttribute("rooms", rooms);
 		        request.setAttribute("selectedStatus", status);
+		        dao1 = new RoomStatusCountDAO();
+		        HashMap<String, Integer> roomStatusCounts = dao1.getRoomStatusCounts();
+
+
+		        request.setAttribute("roomStatusCounts", roomStatusCounts);
 		        request.getRequestDispatcher("/Pages/AdminPages/room-management.jsp").forward(request, response);
+		        
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,13 +55,5 @@ public class RoomFilterServlet extends HttpServlet {
        
     }
 	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 
 }

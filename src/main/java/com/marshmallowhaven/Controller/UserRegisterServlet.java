@@ -22,15 +22,6 @@ import com.marshmallowhaven.util.EncryptDecrypt;
 @WebServlet("/UserRegisterServlet")
 public class UserRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserRegisterServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("123");

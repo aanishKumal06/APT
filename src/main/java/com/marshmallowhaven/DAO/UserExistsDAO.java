@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.marshmallowhaven.DatabaseConnection.DatabaseConnection;
+import com.marshmallowhaven.Model.CommonQueries;
 import com.marshmallowhaven.Model.UserQueries;
 
 public class UserExistsDAO {
@@ -23,7 +24,7 @@ public class UserExistsDAO {
 	    if (conn != null) {
         	
         	try {
-				ps = conn.prepareStatement(UserQueries.CHECK_USER_USERNAME);
+				ps = conn.prepareStatement(CommonQueries.CHECK_USER_USERNAME);
 				ps.setString(1, usernameToCheck);
 		
 				ResultSet rs  = ps.executeQuery();
@@ -47,7 +48,7 @@ public class UserExistsDAO {
 	    if (conn != null) {
         	
         	try {
-				ps = conn.prepareStatement(UserQueries.CHECK_USER_EMAIL);
+				ps = conn.prepareStatement(CommonQueries.CHECK_USER_EMAIL);
 				ps.setString(1, usernameToCheck);
 		
 				ResultSet rs  = ps.executeQuery();

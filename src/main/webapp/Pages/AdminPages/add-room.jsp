@@ -70,19 +70,15 @@
 	      <form action="${pageContext.request.contextPath}/UploadRoomServlet" method="post" enctype="multipart/form-data" class="form-grid">
 	      
 	      <div class="form-group span-2">
-		      
-		    <%
-				ArrayList<String> addRoomErrors = (ArrayList<String>) request.getAttribute("addRoomErrors");
-		        if (addRoomErrors != null && !addRoomErrors.isEmpty()) { %>
-		
-		            <ul class= "error-list">
-		            <h2>Error</h2><br>
-		            <% for (String error : addRoomErrors) { %>
-		                <li><%= error %></li>
-		            <% } %>
-		            </ul>
-		
-		        <% } %>
+	      
+		<c:if test="${not empty addRoomErrors}">
+		    <ul class="error-list">
+		        <h2>Error</h2><br>
+		        <c:forEach var="error" items="${addRoomErrors}">
+		            <li>${error}</li>
+		        </c:forEach>
+		    </ul>
+		</c:if>
 
 	        <c:if test="${not empty successMessage}">
  			   <div class="successMessage-list">${successMessage}</div>
@@ -171,7 +167,6 @@
 	        <div class="form-group span-2">
 	          <div class="modal-footer">
 	            <a style = "text-decoration: none;"href="${pageContext.request.contextPath}/Pages/AdminPages/room-management.jsp" class="btn btn-outline"></i> Cancel</a>
-	            <button class="btn btn-outline" type="button" onclick="closeModal('addRoomModal')">Cancel</button>
 	            <button class="btn btn-primary" >Add Room</button>
 	          </div>
 	        </div>

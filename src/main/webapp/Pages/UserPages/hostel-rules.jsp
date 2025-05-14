@@ -11,6 +11,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/b_logo.png" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/global_for_client.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/rules.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <!-- Header -->

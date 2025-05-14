@@ -3,6 +3,8 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.marshmallowhaven.Model.Room" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,9 +91,54 @@
     cursor: pointer;
   }
   
-  .btn:hover {
+    .applybtn {
+    display: inline-block;
+    background-color: #1a3c5a;
+    width: 100%;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .applybtn:hover {
     background-color: #2c5a85;
   }
+  
+    .btn:hover {
+    background-color: #2c5a85;
+  }
+  
+  
+ .vacancy {
+   display: inline-block;
+   padding: 5px 10px;
+   border-radius: 4px;
+   font-weight: bold;
+ }
+ 
+  .maintenance {
+	background-color: #fef3c7; 
+ }
+ 
+ .vacant {
+   background-color: #d4edda;
+ }
+ 
+ .occupied {
+   background-color: #f8d7da;
+ }
+ 
+  .room-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+ 
   
 </style>
 </head>
@@ -104,10 +151,10 @@
   <!-- Main Content -->
   <section class="main-content">
     <div class="container">
-      <h1 class="section-title">Room Details</h1>
+      <h1 class="section-title">Room </h1>
       
       <div class="room-filters">
-        <form id="room-filter-form" action="${pageContext.request.contextPath}/RoomDetailsServelt" method="GET">
+        <form  action="${pageContext.request.contextPath}/RoomDetailsServelt" method="get">
   <div class="form-row">
     
     <!-- Room Type Filter -->
@@ -141,43 +188,47 @@
       </div>
       
       <div class="room-list">
-                <%
-    // Get the list of rooms from the request attribute
-    		ArrayList<Room> roomList = (ArrayList<Room>) request.getAttribute("rooms");
-            		
-      		 if (roomList == null) {
-      	            response.sendRedirect(request.getContextPath() + "/RoomDetailsServelt"); // Replace with your actual servlet path
-      	            return;
-      	        }        	
-		%>
-      <% for (Room room : roomList) { %>
-		  <div class="room-card">
-		      <img src="<%=request.getAttribute("imgURL")+room.getImageUrl() %>" alt="<%= room.getRoomType() %>" class="room-image">
-		      <div class="room-details">
-		        <h3 class="room-type"><%= room.getRoomType() %></h3>
-		        <div class="room-specs">
-		          <span><strong>Room Number:</strong> <%= room.getRoomNumber() %></span>
-		         <span class="vacancy <%= room.getIsAvailable() == true ? "vacant" : "occupied" %>">
-				    <%= room.getIsAvailable() == true ? "Vacant" : "Occupied" %>
-				</span>
+               <c:if test="${empty rooms}">
+           			<c:redirect url="/RoomDetailsServelt" />
+       			 </c:if>
 
-		        </div>
-		        <p><strong>Monthly Fee:</strong> $<%= room.getMonthlyFee() %></p>
-		        
-		        <!-- Displaying facilities one by one -->
-		        <div class="room-facilities">
-		          <% 
-		              String[] facilities = room.getRoomFacilities().split(",");
-		              for (String facility : facilities) { 
-		          %>
-		              <div class="facility"><%= facility.trim() %></div>  <!-- Each facility on a new line -->
-		          <% } %>
-		        </div>
-		        
-		        <a style="position: relative; display: block; text-align: center; margin: 0 auto;" href="application.jsp?roomId=<%= room.getRoomId() %>" class="btn">Apply Now</a>
-		      </div>
-		  </div>
-		<% } %>
+<c:forEach var="room" items="${rooms}">
+    <div class="room-card">
+
+			 <form action="${pageContext.request.contextPath}/RoomDetailsByIdServlet" method="get" style="all: unset;">
+			    <input type="hidden" name="roomId" value="${room.roomId}" />
+			    <button type="submit" class="room-link" style="all: unset; cursor: pointer;">
+			        <img src="${imgURL}${room.imageUrl}" alt="${room.roomType}" class="room-image">
+			        <div class="room-details">
+			            <h3 class="room-type">${room.roomType}</h3>
+			            <div class="room-specs">
+			                <span><strong>Room Number:</strong> ${room.roomNumber}</span>
+			                <span class="vacancy vacant">
+			                    ${room.roomStatus}
+			                </span>
+			            </div>
+			
+			            <p><strong>Monthly Fee:</strong> $${room.monthlyFee}</p>
+			
+			            <!-- Facilities -->
+			            <div class="room-facilities">
+			                <c:forEach var="facility" items="${fn:split(room.roomFacilities, ',')}">
+			                    <div class="facility">${fn:trim(facility)}</div>
+			                </c:forEach>
+			            </div>  
+			        </div>
+			    </button>
+			</form>
+
+
+        
+           <form action="${pageContext.request.contextPath}/ApplicationEligibilityServlet" method="get" style="text-align: center; margin: 0 auto;">
+			  <input type="hidden" name="roomId" value="${room.roomId}">
+			  <button  type="submit" class="applybtn btn-primary">Apply Now</button>
+			</form>
+
+    </div>
+</c:forEach>
            </div>
     </div>
   </section>

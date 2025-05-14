@@ -41,7 +41,7 @@ public class Room {
     }
     
     public Room(String roomNumber, String roomType, String floor, int monthlyFee,
-            String roomStatus, String roomFacilities, String imageUrl, String roomDescription, int capacity) {
+            String roomStatus, String roomFacilities, String imageUrl, String roomDescription, int capacity, Boolean isAvailable ) {
     this.roomNumber = roomNumber;
     this.roomType = roomType;
     this.floor = floor;
@@ -51,7 +51,16 @@ public class Room {
     this.imageUrl = imageUrl;
     this.roomDescription = roomDescription;
     this.capacity = capacity;
+    this.isAvailable = isAvailable;
     }
+
+    public Room(int currentOccupancy, boolean isAvailable, String roomStatus,  String roomType) {
+        this.currentOccupancy = currentOccupancy;
+        this.isAvailable = isAvailable;
+        this.roomStatus = roomStatus;
+        this.roomType = roomType;
+    }
+
 
 
 

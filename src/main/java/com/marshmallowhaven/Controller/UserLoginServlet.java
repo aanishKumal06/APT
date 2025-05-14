@@ -21,23 +21,15 @@ import com.marshmallowhaven.util.EncryptDecrypt;
 public class UserLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserLoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String encryptPassword = EncryptDecrypt.encrypt(password);
         System.out.println(encryptPassword);
+
+
 
         try {
             LoginDAO loginDao = new LoginDAO();

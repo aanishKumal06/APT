@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.marshmallowhaven.Model.User;
 
-@WebFilter(urlPatterns = { "/Pages/*" })
+@WebFilter(urlPatterns = { "/Pges/*" })
 public class AuthenticationFilter implements Filter {
 
     public void init(FilterConfig filterConfig) {}

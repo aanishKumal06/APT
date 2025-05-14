@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,26 +28,28 @@
         <h1>Dashboard</h1>
       </div>
       
-      
+      <c:if test="${empty roomStatusCounts}">
+        <c:redirect url="/AdminDashboardMangementServlet" />
+    </c:if>
+
+
+     <c:set var="application" value="${applicationStatusCounts}" />
+     <c:set var="conmplaints" value="${conmplaintsStatusCounts}" />
+     <c:set var="room" value="${roomStatusCounts}" />
+    
+	<c:set var="pendingApplications" value="${not empty application.pending ? application.pending : 0}" />
+	<c:set var="pendingComplaint" value="${not empty conmplaints.pending ? conmplaints.pending : 0}" />
+    <c:set var="vacantRoom" value="${not empty room.vacant ? room.vacant : 0}" />
 
       <!-- Dashboard Stats -->
       <div class="dashboard-stats">
         <div class="stat-card">
           <div class="stat-icon blue">
-            <i class="fas fa-user-graduate"></i>
+            <i class="fas fa-user"></i>
           </div>
           <div class="stat-info">
-            <h3>Total Students</h3>
-            <p class="stat-number">456</p>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon green">
-            <i class="fas fa-door-open"></i>
-          </div>
-          <div class="stat-info">
-            <h3>Vacant Rooms</h3>
-            <p class="stat-number">34</p>
+            <h3>Total User</h3>
+            <p class="stat-number">${totalusers}</p>
           </div>
         </div>
         <div class="stat-card">
@@ -56,16 +58,25 @@
           </div>
           <div class="stat-info">
             <h3>Pending Applications</h3>
-            <p class="stat-number">28</p>
+            <p class="stat-number">${pendingApplications}</p>
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon red">
-            <i class="fas fa-exclamation-triangle"></i>
+          <div class="stat-icon green">
+            <i class="fas fa-door-open"></i>
           </div>
           <div class="stat-info">
-            <h3>Active Alerts</h3>
-            <p class="stat-number">12</p>
+            <h3>Vacant Rooms</h3>
+            <p class="stat-number">${vacantRoom}</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="stat-info">
+            <h3>Complaints Pending</h3>
+            <p class="stat-number">${pendingComplaint}</p>
           </div>
         </div>
       </div>
@@ -109,43 +120,58 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>John Doe</td>
-              <td>Male</td>
-              <td>john.doe@example.com</td>
-              <td><span class="badge badge-pending">Pending</span></td>
-              <td>
-                <button class="btn-icon"><i class="fas fa-eye"></i></button>
-                <button class="btn-icon success"><i class="fas fa-check"></i></button>
-                <button class="btn-icon danger"><i class="fas fa-times"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jane Smith</td>
-              <td>Female</td>
-              <td>jane.smith@example.com</td>
-              <td><span class="badge badge-approved">Approved</span></td>
-              <td>
-                <button class="btn-icon"><i class="fas fa-eye"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>Michael Johnson</td>
-              <td>Male</td>
-              <td>michael.j@example.com</td>
-              <td><span class="badge badge-rejected">Rejected</span></td>
-              <td>
-                <button class="btn-icon"><i class="fas fa-eye"></i></button>
-              </td>
-            </tr>
-          </tbody>
+
+
+
+		<tbody>
+		  <c:forEach var="app" items="${applicationList}">
+		    <tr>
+		      <td>${app.fullName}</td>
+		      <td>${app.gender}</td>
+		      <td>${app.contactNumber}</td>
+		      <td>
+		        <c:choose>
+		          <c:when test="${app.status eq 'pending'}">
+		            <span class="badge badge-pending">Pending</span>
+		          </c:when>
+		          <c:when test="${app.status eq 'approved'}">
+		            <span class="badge badge-approved">Approved</span>
+		          </c:when>
+		          <c:when test="${app.status eq 'rejected'}">
+		            <span class="badge badge-rejected">Rejected</span>
+		          </c:when>
+		          
+		          <c:when test="${app.status eq 'checkout'}">
+		            <span class="badge badge-checkout">checkout</span>
+		          </c:when>
+
+		        </c:choose>
+		      </td>
+		      <td>
+		        <form action="ApplicationDetailsByIdServlet" method="get">
+		          <input type="hidden" name="application_user_id" value="${app.applicationUserId}">
+  				  <input type="hidden" name="user_id" value="${app.userId}">
+				  <button class="btn-icon" type="submit">
+				    <i class="fas fa-eye"></i>
+				  </button>
+				</form>
+
+		        <c:if test="${app.status eq 'pending'}">
+		          <button class="btn-icon success"><i class="fas fa-check"></i></button>
+		          <button class="btn-icon danger"><i class="fas fa-times"></i></button>
+		        </c:if>
+		      </td>
+		    </tr>
+		  </c:forEach>
+		</tbody>
+		
+
         </table>
       </div>
 
       <!-- Recent Notifications -->
       <div class="section-title">
-        <h2>Recent Notifications</h2>
+        <h2>Recent Notice</h2>
         <a href="notifications.html" class="view-all">View All</a>
       </div>
       <div class="notifications-list">

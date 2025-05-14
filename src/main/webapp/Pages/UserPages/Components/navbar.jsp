@@ -31,7 +31,7 @@
 
           <li class="notification-icon">
             <div class="notification-container">
-              <span class="notification-count">3</span>
+              <span class="notification-count">-</span>
               <i class="fas fa-bell"></i>
               <div class="notification-dropdown">
                 <div class="notification-item">
@@ -64,7 +64,7 @@
                   </div>
                 </div>
                 <ul class="profile-menu">
-				  <li><a href="${pageContext.request.contextPath}/Pages/UserPages/student-dashboard.jsp">My Profile</a></li>
+				<li><a href="${pageContext.request.contextPath}/Pages/UserPages/student-dashboard.jsp">My Profile</a></li>
 				  <li><a href="${pageContext.request.contextPath}/Pages/UserPages/complaint.jsp">Complaint</a></li>
 				  <li>
 					  <form action="${pageContext.request.contextPath}/LogoutServlet" method="get" >
@@ -72,9 +72,6 @@
 					  </form>
 					</li>
 
-				</ul>
-
-              </div>
             </div>
           </li>
         </ul>

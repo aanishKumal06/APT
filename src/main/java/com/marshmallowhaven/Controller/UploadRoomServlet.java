@@ -15,6 +15,7 @@ import javax.servlet.http.Part;
 
 import com.marshmallowhaven.DAO.AddRoomDAO;
 import com.marshmallowhaven.DAO.RegisterDAO;
+import com.marshmallowhaven.DAO.RoomExistsDAO;
 import com.marshmallowhaven.Model.Room;
 
 /**
@@ -27,25 +28,7 @@ maxRequestSize = 1024 * 1024 * 50) // 50MB
 public class UploadRoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UploadRoomServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String roomNumber = request.getParameter("roomNumber");
 		String roomType = request.getParameter("roomType");
@@ -62,24 +45,11 @@ public class UploadRoomServlet extends HttpServlet {
 
 		
 		//read the file/image object from the request
-		Part image = request.getPart("roomImage");  //get image from parameter having name as image
-		String fileName = image.getSubmittedFileName();  //get the filename from the uploaded file itself
-		System.out.println(fileName);
-		
-		String storePath = request.getServletContext().getRealPath(""); //get path of deployment folder
-		String filePath = "photos"+File.separator+fileName;   //prepared file path like photos\fileName.jpg
-		System.out.println(storePath);  
-		System.out.println(filePath);  
+		Part image = request.getPart("roomImage");
+		String fileName = image.getSubmittedFileName();//get image from parameter having name as image
 		
 		
-		try {
-		    image.write(storePath+File.separator +filePath); //upload file to selected path
-			System.out.println("File uploaded");
-     		//TODO: Write respective DAO process to store all attributes and filePath to database
-				
-		} catch (Exception e) {
-			System.out.println("File not uploaded");
-		}
+		
 
 		ArrayList<String> addRoomErrors = new ArrayList<>();
 
@@ -88,6 +58,20 @@ public class UploadRoomServlet extends HttpServlet {
 		    addRoomErrors.add("Room number is required.");
 		    System.out.println("File not 1234443");
 		}
+		
+		try {
+		    RoomExistsDAO roomDao = new RoomExistsDAO();
+		    boolean roomExists = roomDao.roomNumberExists(roomNumber); // `roomNumber` is your input
+
+		    if (roomExists) {
+		    	addRoomErrors.add("Room number already exists.");
+		    }
+
+		} catch (ClassNotFoundException | SQLException e) {
+
+		    e.printStackTrace();
+		}
+
 
 		if (roomType == null) {
 		    addRoomErrors.add("Room type is required.");
@@ -126,7 +110,7 @@ public class UploadRoomServlet extends HttpServlet {
 		} else {
 		    // Validate file extension
 		    String fileNameLower = fileName.toLowerCase();
-		    if (!(fileNameLower.endsWith(".jpg") || fileNameLower.endsWith(".png"))) {
+		    if (!(fileNameLower.endsWith(".jpg") || fileNameLower.endsWith(".png") || fileNameLower.endsWith(".jpeg"))) {
 		        addRoomErrors.add("Only JPG, JPEG, or PNG image formats are allowed.");
 		    }
 		} 
@@ -135,6 +119,24 @@ public class UploadRoomServlet extends HttpServlet {
 	
 
 		if (addRoomErrors.isEmpty()) {
+			
+
+			
+			String storePath = request.getServletContext().getRealPath(""); //get path of deployment folder
+			String filePath = "photos"+File.separator+fileName;   //prepared file path like photos\fileName.jpg
+			System.out.println(storePath);  
+			System.out.println(filePath);  
+
+			try {
+			    image.write(storePath+File.separator +filePath); //upload file to selected path
+				System.out.println("File uploaded");
+	     		//TODO: Write respective DAO process to store all attributes and filePath to database
+					
+			} catch (Exception e) {
+				System.out.println("File not uploaded");
+			}
+			
+			
 			
 			try {
 				
@@ -150,6 +152,11 @@ public class UploadRoomServlet extends HttpServlet {
 				} else {
 				    capacity = 2;
 				}
+				boolean isAvailable = false;
+				
+				if (roomStatus.equals("vacant")) {
+					isAvailable = true;
+				}
 
 				
 				AddRoomDAO addroom = new AddRoomDAO();
@@ -157,11 +164,11 @@ public class UploadRoomServlet extends HttpServlet {
 				 System.out.println(facilitiesStr);
 		
 				Room room = new Room( roomNumber,  roomType,  floor,  monthlyFeeInt,
-			             roomStatus,  facilitiesStr,  fileName,  description,  capacity);
+			             roomStatus,  facilitiesStr,  fileName,  description,  capacity, isAvailable);
 				 boolean isRegistered = addroom.addRoom(room);
 
 			        if (isRegistered) {
-			        	 request.setAttribute("successMessage", "Room successfully added.");
+			        	 request.setAttribute("successMessage", "Room successfully updated.");
 			        	 request.getRequestDispatcher("/Pages/AdminPages/add-room.jsp").forward(request, response);
 			            
 			        } else {

@@ -13,31 +13,28 @@ public class Application {
     private String specialRequests;
     private String status;
     private String idProofDocumentUrl;
-    private String studentIdDocumentUrl;
     private String photoUrl;
     private String medicalCertificateUrl;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
     // Constructor (excluding applicationId, createdAt, and updatedAt as they're handled by DB)
-    public Application(String durationOfStay, Date expectedCheckIn, Date checkInDate, Date checkOutDate,
-                       String specialRequests, String status, String idProofDocumentUrl,
-                       String studentIdDocumentUrl, String photoUrl, String medicalCertificateUrl) {
+    public Application(String durationOfStay, Date expectedCheckIn, String specialRequests, 
+                     String photoUrl) {
         this.durationOfStay = durationOfStay;
         this.expectedCheckIn = expectedCheckIn;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
         this.specialRequests = specialRequests;
-        this.status = status;
-        this.idProofDocumentUrl = idProofDocumentUrl;
-        this.studentIdDocumentUrl = studentIdDocumentUrl;
+
+
         this.photoUrl = photoUrl;
-        this.medicalCertificateUrl = medicalCertificateUrl;
+
     }
 
     // Getters and Setters
 
-    public int getApplicationId() {
+
+
+	public int getApplicationId() {
         return applicationId;
     }
 
@@ -101,13 +98,6 @@ public class Application {
         this.idProofDocumentUrl = idProofDocumentUrl;
     }
 
-    public String getStudentIdDocumentUrl() {
-        return studentIdDocumentUrl;
-    }
-
-    public void setStudentIdDocumentUrl(String studentIdDocumentUrl) {
-        this.studentIdDocumentUrl = studentIdDocumentUrl;
-    }
 
     public String getPhotoUrl() {
         return photoUrl;

@@ -35,6 +35,7 @@ public class AddRoomDAO {
 				ps.setString(7, room.getRoomFacilities());
 				ps.setString(8, room.getImageUrl());
 				ps.setInt(9, room.getCapacity());
+				ps.setBoolean(10, room.getIsAvailable());
 	
 			
 			    

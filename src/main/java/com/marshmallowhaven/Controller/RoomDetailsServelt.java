@@ -21,11 +21,6 @@ public class RoomDetailsServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public RoomDetailsServelt() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String roomType= request.getParameter("roomType"); // e.g., vacant, occupied, maintenance
@@ -38,9 +33,19 @@ public class RoomDetailsServelt extends HttpServlet {
 			 ArrayList<Room> rooms;
 
 		        if (roomType == null && priceRange == null ) {
-		            rooms = dao.getAllRooms();
+		            rooms = dao.getVacantRooms();
+		            for (Room room : rooms) {
+		                System.out.println("Room Number: " + room.getRoomNumber());
+		                System.out.println("Room Status:" + room.getRoomStatus());
+		            }
+
 		        } else {
 		            rooms = dao.getRoomsByTypeAndPriceOrder(roomType,priceRange);
+		            for (Room room : rooms) {
+		                System.out.println("Room Number: " + room.getRoomNumber());
+		                System.out.println("Room Status: " + room.getRoomStatus());
+		            }
+
 		        }
 
 		        String displayPath = request.getContextPath() + "/photos/" ;

@@ -50,20 +50,26 @@ public class User {
     
     
 
-    // Getters and Setters
-    public int getUserId() {
-        return userId;
-    }
+    public User() {
+		
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	// Getters and Setters
+
 
     public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+    public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
