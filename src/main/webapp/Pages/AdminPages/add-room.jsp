@@ -57,7 +57,7 @@
 
 
  <div class="page-header">
-        <h1>Room Management</h1>
+        <h1>Edit Room</h1>
         <div class="actions">
           <a style = "text-decoration: none;"href="${pageContext.request.contextPath}/Pages/AdminPages/room-management.jsp" class="btn btn-primary"><i class="fas fa-times"></i> Cancel</a>
         </div>
@@ -93,7 +93,7 @@
 	        <!-- Room Number -->
 	        <div class="form-group">
 	          <label for="roomNumber" class="form-label">Room Number</label>
-	          <input type="text" id="roomNumber" name="roomNumber" class="form-input" placeholder="e.g. A-101">
+	          <input type="text" id="roomNumber" name="roomNumber" class="form-input" placeholder="e.g. A-101" required>
 	        </div>
 	
 	        <!-- Room Type -->

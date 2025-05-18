@@ -55,19 +55,16 @@
       <!-- Main Content -->
     <div class="content" id="content" >
        <jsp:include page="/Pages/AdminPages/Components/topbar.jsp"/>
-             <c:if test="${empty applicationList}">
-        <c:redirect url="/ApplicationDetailsServlet" />
-    </c:if>
 
 
  <div class="page-header">
-        <h1>Application Management</h1>
+
        
       </div>
   <!-- Add Room Modal -->
 		
 	      <div class="page-header">
-        <h2>Student Applications</h2>
+        <h1> Applications Management</h1>
         <div class="actions">
           <div class="filter-group">
            <form action="${pageContext.request.contextPath}/ApplicationDetailsServlet" method="get">
@@ -84,6 +81,71 @@
           </div>
         </div>
       </div>
+      
+            <c:if test="${empty applicationStatusCounts}">
+        <c:redirect url="/ApplicationDetailsServlet" />
+    </c:if>
+
+
+     <c:set var="application" value="${applicationStatusCounts}" />
+     
+     <c:set var="allApplications" value="${not empty application.Total ? application.Total : 0}" />
+     <c:set var="pendingApplications" value="${not empty application.pending ? application.pending : 0}" />
+     <c:set var="approvedApplications" value="${not empty application.approved ? application.approved : 0}" />
+     <c:set var="rejectedApplications" value="${not empty application.rejected ? application.rejected : 0}" />
+     <c:set var="checkoutApplications" value="${not empty application.checkout ? application.checkout : 0}" />
+     
+	  <div class="dashboard-stats">
+	  <div class="stat-card">
+	    <div class="stat-icon blue">
+	      <i class="fas fa-layer-group"></i>
+	    </div>
+	    <div class="stat-info">
+	      <h3>All Applications</h3>
+	      <p class="stat-number">${allApplications}</p>
+	    </div>
+	  </div>
+	
+	  <div class="stat-card">
+	    <div class="stat-icon amber">
+	      <i class="fas fa-hourglass-half"></i>
+	    </div>
+	    <div class="stat-info">
+	      <h3>Pending Applications</h3>
+	      <p class="stat-number">${pendingApplications}</p>
+	    </div>
+	  </div>
+	
+	  <div class="stat-card">
+	    <div class="stat-icon green">
+	      <i class="fas fa-check-circle"></i>
+	    </div>
+	    <div class="stat-info">
+	      <h3>Approved Applications</h3>
+	      <p class="stat-number">${approvedApplications}</p>
+	    </div>
+	  </div>
+	
+	  <div class="stat-card">
+	    <div class="stat-icon red">
+	      <i class="fas fa-times-circle"></i>
+	    </div>
+	    <div class="stat-info">
+	      <h3>Rejected Applications</h3>
+	      <p class="stat-number">${rejectedApplications}</p>
+	    </div>
+	  </div>
+	
+	  <div class="stat-card">
+	    <div class="stat-icon purple">
+	      <i class="fas fa-sign-out-alt"></i>
+	    </div>
+	    <div class="stat-info">
+	      <h3>Checkout</h3>
+	      <p class="stat-number">${checkoutApplications}</p>
+	    </div>
+	  </div>
+	</div>
       
       <!-- Applications Table -->
       <div class="table-container">
@@ -135,8 +197,20 @@
 				</form>
 
 		        <c:if test="${app.status eq 'pending'}">
+		        
+		         <form action="ApprovedApplicationServlet" method="post">
+		       		 <input type="hidden" name="application_id" value="${app.applicationId}">
 		          <button class="btn-icon success"><i class="fas fa-check"></i></button>
-		          <button class="btn-icon danger"><i class="fas fa-times"></i></button>
+		        </form>
+
+				<form action="RejectApplicationServlet" method="post" style="display:none">
+		       	 <input type="text" name="application_id" value="${app.applicationId}">
+	             <input type="text" name="roomNumber" value="${app.roomNumber}" style="display:none" />
+			     <input type="text" name="roomType" value="${app.roomType}" style="display:none" />
+			      <input type="text" name="currentOccupancy" value="${app.currentOccupancy}" style="display:none" />
+		            <button class="btn-icon danger"><i class="fas fa-times"></i></button>
+		        </form>
+
 		        </c:if>
 		      </td>
 		    </tr>

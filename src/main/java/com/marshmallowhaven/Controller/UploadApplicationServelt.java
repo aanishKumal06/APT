@@ -63,10 +63,7 @@ public class UploadApplicationServelt extends HttpServlet {
   
         // Personal Information
         String fullName = request.getParameter("fullname");
-        String username = request.getParameter("Username");
-        String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-        String gender = request.getParameter("gender");
         String birthday = request.getParameter("dob");
         String address = request.getParameter("address");
 
@@ -89,7 +86,7 @@ public class UploadApplicationServelt extends HttpServlet {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         // Validations
-        validateFields(applicationError, fullName, username, email, phone, gender, birthday, address,
+        validateFields(applicationError, fullName, phone,  birthday, address,
                 emergencyName, emergencyRelationship, emergencyPhone, emergencyEmail,
                 expectedCheckInStr, durationOfStay, formatter);
 
@@ -135,11 +132,11 @@ public class UploadApplicationServelt extends HttpServlet {
             }
             // Update user profile
             user.setFullName(fullName);
-            user.setGender(gender);
             user.setDateOfBirth(Date.valueOf(birthday));
             user.setContactNumber(phone);
             user.setAddress(address);
             user.setProfileImageUrl(fileName);
+            user.setUserId(userId);
             appDAO.updateUserByUsername(user);
             
             
@@ -157,8 +154,8 @@ public class UploadApplicationServelt extends HttpServlet {
        
     }
 
-    private void validateFields(ArrayList<String> errors, String fullName, String username, String email,
-                                String phone, String gender, String birthday, String address,
+    private void validateFields(ArrayList<String> errors, String fullName, 
+                                String phone, String birthday, String address,
                                 String emergencyName, String emergencyRelationship,
                                 String emergencyPhone, String emergencyEmail,
                                 String checkInStr, String duration, DateTimeFormatter formatter) {
@@ -166,18 +163,11 @@ public class UploadApplicationServelt extends HttpServlet {
         if (fullName == null || !fullName.trim().matches("^[A-Za-z]+(?: [A-Za-z]+)+$")) {
             errors.add("Full name: Requires at least first and last name (letters only).");
         }
-        if (username == null || username.trim().isEmpty()) {
-            errors.add("Username is required.");
-        }
-        if (email == null || !email.matches("^[\\w.%+-]+@[\\w.-]+\\.[A-Za-z]{2,6}$")) {
-            errors.add("Invalid email format.");
-        }
+       
         if (phone == null || !phone.matches("^\\d{10}$")) {
             errors.add("Phone number must be exactly 10 digits.");
         }
-        if (gender == null || gender.trim().isEmpty()) {
-            errors.add("Gender is required.");
-        }
+        
         if (birthday == null || birthday.isEmpty()) {
             errors.add("Birthday is required.");
         } else {

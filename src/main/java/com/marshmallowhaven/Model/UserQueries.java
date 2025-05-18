@@ -29,12 +29,11 @@ public class UserQueries {
 	public static final String UPDATE_USER_BY_USERNAME = 
 		    "UPDATE users SET "
 		    + "full_name = ?, "
-		    + "gender = ?, "
 		    + "date_of_birth = ?, "
 		    + "contact_number = ?, "
 		    + "address = ?, "
 		    + "profile_image_url = ? "
-		    + "WHERE username = ?";
+		    + "WHERE user_id = ?";
 	
 	public static final String ADD_EMERGENCY_CONTACT =
 		    "INSERT INTO emergency_contacts (name, relationship, phone_number, email) " +
@@ -70,6 +69,46 @@ public class UserQueries {
 			    + "JOIN emergency_contacts ec ON uc.emergency_id = ec.emergency_id "
 			    + "JOIN users u ON uc.user_id = u.user_id " 
 			    + "WHERE uc.user_id = ? ";  
+
+	 
+	 public static final String GET_APPLICATIONS_DETAILS_BY_USER =
+			    "SELECT " +
+			    "aur.application_user_id, " +
+			    "r.room_number, " +
+			    "r.room_type, " +
+			    "r.floor, "+
+			    "r.monthly_fee, "+
+			    "a.duration_of_stay, " +
+			    "a.expected_check_in, " +
+			    "a.status " +
+			    "FROM application_user_room AS aur " +
+			    "JOIN users AS u ON aur.user_id = u.user_id " +
+			    "JOIN rooms AS r ON aur.room_id = r.room_id " +
+			    "JOIN applications AS a ON aur.application_id = a.application_id " +
+			    "WHERE u.user_id = ? " +
+			    "ORDER BY a.created_at DESC " +
+			    "LIMIT 1";
+	 
+	 public static final String UPDATE_USER_PROFILE =
+			    "UPDATE users SET " +
+			    "full_name = ?, " +
+			    "username = ?, " +
+			    "gender = ?, " +
+			    "email = ?, " +
+			    "contact_number = ?, " +
+			    "date_of_birth = ?, " +
+			    "address = ? " +
+			    "WHERE user_id = ?";
+	 
+	 public static final String UPDATE_USER_PROFILE_IMAGE =
+			    "UPDATE users SET " +
+			    "profile_image_url = ? " +
+			    "WHERE user_id = ?";
+	 
+	 public static final String UPDATE_USER_PASSWORD =
+			    "UPDATE users SET " +
+			    "password = ? " +
+			    "WHERE user_id = ?";
 
 
 }

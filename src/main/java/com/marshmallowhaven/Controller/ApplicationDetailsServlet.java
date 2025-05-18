@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.marshmallowhaven.DAO.ApplicationDetailsDAO;
+import com.marshmallowhaven.DAO.ApplicationStatusDAO;
 import com.marshmallowhaven.Model.ApplicationDetails;
 
 /**
@@ -26,8 +27,15 @@ public class ApplicationDetailsServlet extends HttpServlet {
 		String status = request.getParameter("applicationStatus");
 		 System.out.println(status);
 		ApplicationDetailsDAO  applicationDetails;
+		ApplicationStatusDAO applicationStatusDAO ;
 
 		try {
+			
+			applicationStatusDAO = new ApplicationStatusDAO();
+			 HashMap<String, Integer> applicationStatusCounts = applicationStatusDAO.getApplicationStatusCounts();
+		     request.setAttribute("applicationStatusCounts", applicationStatusCounts);
+		     
+		     
 			applicationDetails = new ApplicationDetailsDAO();
 			ArrayList<ApplicationDetails> applicationList;
 			if (status == null || status.equalsIgnoreCase("all")) {

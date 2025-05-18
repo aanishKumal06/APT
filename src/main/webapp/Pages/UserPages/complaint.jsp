@@ -25,26 +25,16 @@
       <div class="form-container">
         <form id="hostel-application">
           <div class="form-group">
-            <h3>Personal Information</h3>
+            <h3>Complaint Information</h3>
           </div>
           
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fullname">Full Name *</label>
-              <input type="text" id="fullname" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" class="form-control" required>
-            </div>
-          </div>
+
           
           <div class="form-row">
             <div class="form-group">
               <label for="complaint-type">Complaint Type *</label>
-              <select id="complaint-type" class="form-control" required>
-                <option value="">Select Type</option>
+              <select name="complaint-type" class="form-control" required>
+                <option value="" disabled selected>Select Type</option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Noise">Noise</option>
                 <option value="Cleanliness">Cleanliness</option>
@@ -55,7 +45,7 @@
             
             <div class="form-group">
                 <label for="id-proof">Evidence</label>
-                <input type="file" id="id-proof" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+                <input type="file" id="id-proof" class="form-control" accept=".jpg,.jpeg,.png" required>
             </div>
           </div>
           

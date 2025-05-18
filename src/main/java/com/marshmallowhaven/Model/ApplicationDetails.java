@@ -14,10 +14,11 @@ public class ApplicationDetails {
     private String address;
     private String roomNumber;
     private String roomType;
+    private int currentOccupancy;
     private int applicationId;
     private String durationOfStay;
     private Date expectedCheckIn;
-    private Date checkInDate;
+    private Date checkOutDate;
     private String specialRequests;
     private String status;
     private String photoUrl;
@@ -29,8 +30,8 @@ public class ApplicationDetails {
    
     public ApplicationDetails(int applicationUserId, String fullName, int userId, String email, String gender,
 			            Date dateOfBirth, String contactNumber, String address, String roomNumber,
-			            String roomType, int applicationId, String durationOfStay, Date expectedCheckIn,
-			            Date checkInDate, String specialRequests, String status, String photoUrl,
+			            String roomType, int currentOccupancy, int applicationId, String durationOfStay, Date expectedCheckIn,
+			            Date checkOutDate, String specialRequests, String status, String photoUrl,
 			            Timestamp applicationCreatedAt) {
 			this.applicationUserId = applicationUserId;
 			this.fullName = fullName;
@@ -42,10 +43,11 @@ public class ApplicationDetails {
 			this.address = address;
 			this.roomNumber = roomNumber;
 			this.roomType = roomType;
+			this.currentOccupancy = currentOccupancy;
 			this.applicationId = applicationId;
 			this.durationOfStay = durationOfStay;
 			this.expectedCheckIn = expectedCheckIn;
-			this.checkInDate = checkInDate;
+			this.checkOutDate = checkOutDate;
 			this.specialRequests = specialRequests;
 			this.status = status;
 			this.photoUrl = photoUrl;
@@ -55,7 +57,27 @@ public class ApplicationDetails {
     
     // Getters and Setters
 
-    public int getUserId() {
+    public int getCurrentOccupancy() {
+		return currentOccupancy;
+	}
+
+
+	public void setCurrentOccupancy(int currentOccupancy) {
+		this.currentOccupancy = currentOccupancy;
+	}
+
+
+	public Date getCheckOutDate() {
+		return checkOutDate;
+	}
+
+
+	public void setCheckOutDate(Date checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
+
+
+	public int getUserId() {
 		return userId;
 	}
 
@@ -161,12 +183,12 @@ public class ApplicationDetails {
         this.expectedCheckIn = expectedCheckIn;
     }
 
-    public Date getCheckInDate() {
-        return checkInDate;
+    public Date getcheckOutDate() {
+        return checkOutDate;
     }
 
-    public void setCheckInDate(Date checkInDate) {
-        this.checkInDate = checkInDate;
+    public void setcheckOutDate(Date checkOutDate) {
+        this.checkOutDate = checkOutDate;
     }
 
     public String getSpecialRequests() {

@@ -16,6 +16,52 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/UserCss/student_dashboard.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <Style>
+    .profile-btn {
+	  margin-top: 20px;
+	  display: flex;
+	  flex-direction: column; /* Stack items vertically */
+	  align-items: center;    /* Center horizontally */
+	  gap: 20px;  
+  }
+  
+  .profile-pic-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-pic {
+  display: block;
+  border-radius: 50%;
+  width: 100px; /* adjust size as needed */
+  height: 100px;
+  object-fit: cover;
+}
+
+.update-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #1a3c5a;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.update-pic a{
+  text-decoration: none;
+}
+
+</Style>
 </head>
 <body>
   <!-- Header -->
@@ -36,8 +82,14 @@
     
         <c:forEach var="user" items="${user}">
     <!-- Dynamically set the profile image URL -->
-    <img src="${imgURL}${user.profileImageUrl}" alt="Profile" class="mini-profile-pic">
+		<div class="profile-pic-wrapper">
+		  <img src="${imgURL}${user.profileImageUrl}" alt="Profile" class="profile-pic">
+		  
+		  <form class ="update-pic">
+		    <a href="${pageContext.request.contextPath}/Pages/UserPages/update-password.jsp" class="update-btn"> <i class="fas fa-plus pulse-plus"></i></a>
+		  </form>
 
+		</div>
     <h2>${user.fullName}</h2>
 
     <div class="profile-details">
@@ -52,17 +104,27 @@
         </p>
     </div>
        </c:forEach>  
-      	<div class="profile-actions">
-		  <form action="/update-profile" method="post">
-		    <a href="${pageContext.request.contextPath}/Pages/UserPages/application2.jsp" class="btn update-profile-btn">Update Profile</a>
+      	<div class="profile-btn">
+		  <form action="${pageContext.request.contextPath}/UserUpdateProfileServlet" method="get">
+		      <button type="submit" class="btn update-profile-btn">Update Profile</button>
+
+		  </form>
+		  <form >
+		    <a href="${pageContext.request.contextPath}/Pages/UserPages/update-password.jsp" class="btn update-profile-btn">Change Password</a>
 		  </form>
 		</div>
 
         </div>
         
         <div class="status-section">
-          <h2>Application Status</h2>
-          <div class="status status-approved">Approved</div>
+          <h3>Application Details</h3>
+
+          <div class="room-preview" title="Click for more details">
+            <p><strong>Room Type:</strong> Double Occupancy (AC)</p>
+            <p><strong>Building:</strong> Block B</p>
+            <p><strong>Floor:</strong> 2nd Floor</p>
+      
+          </div>
           
           <h3 style="margin-top: 20px;">Room Details</h3>
           <div class="room-preview" title="Click for more details">
@@ -73,7 +135,7 @@
           </div>
           
           <div class="notifications">
-            <h3>Notifications</h3>
+            <h3>Notice</h3>
             
             <div class="notification notification-maintenance">
               <h4>Scheduled Maintenance</h4>

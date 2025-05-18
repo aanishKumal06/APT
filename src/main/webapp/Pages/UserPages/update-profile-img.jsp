@@ -67,66 +67,24 @@
   <c:set var="activePage" scope="request" />
 <jsp:include page="/Pages/UserPages/Components/navbar.jsp"/>
 
-<c:if test="${empty userDetails}">
-    <c:redirect url="/UserUpdateProfileServlet" />
-</c:if>
 
 
-        <c:forEach var="user" items="${userDetails}">
-<!-- Main Content -->
 <section class="main-content">
   <div class="container">
     <h1 class="section-title">Update Profile</h1>
 
     <div class="form-container">
       <form method="POST" action="UpdateProfileServlet" enctype="multipart/form-data">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="full_name">Full Name</label>
-            <input type="text" id="full_name" name="full_name" class="form-control" 
-                   value="${user.fullName}">
-          </div>
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" 
-                   value="${user.username}">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" class="form-control" 
-                   value="${user.email}">
-          </div>
-          <div class="form-group">
-            <label for="contact_number">Contact Number</label>
-            <input type="text" id="contact_number" name="contact_number" class="form-control" 
-                   value="${user.contactNumber}">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender" class="form-control">
-              <option value="Male" ${user.gender == 'Male' ? 'selected' : ''}>Male</option>
-              <option value="Female" ${user.gender == 'Female' ? 'selected' : ''}>Female</option>
-              <option value="Other" ${user.gender == 'Other' ? 'selected' : ''}>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="date_of_birth">Date of Birth</label>
-            <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" 
-                   value="${user.dateOfBirth}">
-          </div>
-        </div>
-
         <div class="form-group">
-          <label for="address">Address</label>
-          <textarea id="address" name="address" rows="3" class="form-control">${user.address}</textarea>
-        </div>
-
+            <h3>Profile Upload</h3>
+            <p>Please upload the profile (PNG or JPG format only)</p>
+          </div>
+          
+            <div class="form-group">
+              <label for="photo">Profile Photo *</label>
+              <input type="file" name="photo" class="form-control" accept=".jpg,.jpeg,.png" required>
+            </div>
+        
         <div class="form-actions">
           <a href="${pageContext.request.contextPath}/Pages/UserPages/student-dashboard.jsp" class="btn update-profile-btn">Cancel</a>
           <button type="submit" class="btn btn-primary">Update Profile</button>
@@ -135,7 +93,7 @@
     </div>
   </div>
 </section>
-       </c:forEach> 
+ 
   
   <jsp:include page="/Pages/UserPages/Components/footer.jsp"/>
   

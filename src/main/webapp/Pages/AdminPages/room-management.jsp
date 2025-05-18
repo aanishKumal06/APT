@@ -186,15 +186,26 @@
                     <td><span class="${statusClass}">${room.roomStatus}</span></td>
                     <td>${room.currentOccupancy}</td>
 				    <td>
-				    <button class="btn-icon" onclick="openModal('editRoomModal', ${room.roomId})">
-				        <i class="fas fa-edit"></i>
-				    </button>
+				    
+				    <form action="${pageContext.request.contextPath}/UpdateRoomServlet" method="get" class="form-grid">
+					    <input type="hidden" name="roomId" value="${room.roomId}" />
+					  <button class="btn-icon"><i class="fas fa-edit"></i></button>
+					</form>
+									     
+		           
+				    
+				    
 				
-				    <button class="btn-icon" onclick="openModal('viewRoomModal', ${room.roomId})">
-				        <i class="fas fa-eye"></i>
-				    </button>
+						<form action="AdminRoomDetailsByIdServlet" method="get">
+				          <input type="hidden" name="roomId" value="${room.roomId}">
+
+						  <button class="btn-icon" type="submit">
+						    <i class="fas fa-eye"></i>
+						  </button>
+						</form>
+						   
 				
-				    <c:if test="${room.roomStatus != 'occupied'}">
+				    <c:if test="${room.currentOccupancy == 0 }">
 
 				            <button type="button" class="btn-icon danger" onclick="showConfirmDialog('${room.roomId}')">
 				                <i class="fas fa-trash"></i>

@@ -174,14 +174,14 @@ public class RoomDetailsDAO {
 	}
 
 	
-	public ArrayList<Room> getARoomDetailById(int rommID) {
+	public ArrayList<Room> getARoomDetailById(int roomID) {
 		ArrayList<Room> rooms = new ArrayList<>();
 	
 		if (conn != null) {
 
 			  try {
 				ps = conn.prepareStatement(CommonQueries.GET_ROOM_DETAILS_BY_ID);
-				ps.setInt(1, rommID);
+				ps.setInt(1, roomID);
 				 ResultSet rs = ps.executeQuery();
 		         while (rs.next()) {
 		        	    Room room = new Room(

@@ -27,13 +27,13 @@ public class UserRegisterServlet extends HttpServlet {
 		System.out.println("123");
 	
 	 	String name = request.getParameter("fullname");
-	 	System.out.println();
 	    String username = request.getParameter("username");
 	    String gender = request.getParameter("gender");
 	    String email = request.getParameter("email");
 	    String password = request.getParameter("password");
 	    String retypePassword = request.getParameter("retypePassword");
 	    String encryptPassword = EncryptDecrypt.encrypt(password);
+	 
 
 	    ArrayList<String> errors = new ArrayList<>();
 
@@ -53,6 +53,10 @@ public class UserRegisterServlet extends HttpServlet {
 	    if (!password.equals(retypePassword)) {
 	        errors.add("Password and Retype Password do not match.");
 	    }
+	    if (gender == null || gender.trim().isEmpty()) {
+	    	errors.add("gender is required.");
+		    System.out.println("File not 123423123443");
+		}
 
 	    
 		try {

@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+
 
 import com.marshmallowhaven.DatabaseConnection.DatabaseConnection;
 import com.marshmallowhaven.Model.Application;
-import com.marshmallowhaven.Model.CommonQueries;
+
 import com.marshmallowhaven.Model.Room;
 import com.marshmallowhaven.Model.User;
 import com.marshmallowhaven.Model.UserQueries;
@@ -94,12 +94,11 @@ public class AddApplicationDAO {
 	        try {
 	        	ps = conn.prepareStatement(UserQueries.UPDATE_USER_BY_USERNAME);
 	            ps.setString(1, user.getFullName());
-	            ps.setString(2, user.getGender());
-	            ps.setDate(3, user.getDateOfBirth()); // Ensure this is java.sql.Date
-	            ps.setString(4, user.getContactNumber());
-	            ps.setString(5, user.getAddress());
-	            ps.setString(6, user.getProfileImageUrl());
-	            ps.setString(7, user.getUsername()); // WHERE clause value
+	            ps.setDate(2, user.getDateOfBirth()); // Ensure this is java.sql.Date
+	            ps.setString(3, user.getContactNumber());
+	            ps.setString(4, user.getAddress());
+	            ps.setString(5, user.getProfileImageUrl());
+	            ps.setInt(6, user.getUserId()); // WHERE clause value
 
 	            if (ps.executeUpdate() > 0) {
 	                isUpdated = true;

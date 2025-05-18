@@ -59,10 +59,11 @@ public class AdminQueries {
 			    "u.address, " +
 			    "r.room_number, " +
 			    "r.room_type, " +
+			    "r.current_occupancy, " +
 			    "a.application_id, " +
 			    "a.duration_of_stay, " +
 			    "a.expected_check_in, " +
-			    "a.check_in_date, " +
+			    "a.check_out_date, " +
 			    "a.special_requests, " +
 			    "a.status, " +
 			    "a.photo_url, " +
@@ -86,10 +87,11 @@ public class AdminQueries {
 			    "u.address, " +
 			    "r.room_number, " +
 			    "r.room_type, " +
+			    "r.current_occupancy, " +
 			    "a.application_id, " +
 			    "a.duration_of_stay, " +
 			    "a.expected_check_in, " +
-			    "a.check_in_date, " +
+			    "a.check_out_date, " +
 			    "a.special_requests, " +
 			    "a.status, " +
 			    "a.photo_url, " +
@@ -112,10 +114,11 @@ public class AdminQueries {
 			    "u.address, " +
 			    "r.room_number, " +
 			    "r.room_type, " +
+			    "r.current_occupancy, " +
 			    "a.application_id, " +
 			    "a.duration_of_stay, " +
 			    "a.expected_check_in, " +
-			    "a.check_in_date, " +
+			    "a.check_out_date, " +
 			    "a.special_requests, " +
 			    "a.status, " +
 			    "a.photo_url, " +
@@ -139,10 +142,11 @@ public class AdminQueries {
 			    "u.address, " +
 			    "r.room_number, " +
 			    "r.room_type, " +
+			    "r.current_occupancy, " +
 			    "a.application_id, " +
 			    "a.duration_of_stay, " +
 			    "a.expected_check_in, " +
-			    "a.check_in_date, " +
+			    "a.check_out_date, " +
 			    "a.special_requests, " +
 			    "a.status, " +
 			    "a.photo_url, " +
@@ -164,5 +168,50 @@ public class AdminQueries {
 				    "JOIN emergency_contacts ec ON uc.emergency_id = ec.emergency_id "+ 
 				    "JOIN users u ON uc.user_id = u.user_id "+ 
 				    "Where u.user_id = ?"; 
+		 
+		 
+		 public static final String UPDATE_APPLICATION_STATUS_AND_CHECKOUT_DATE_BY_ID = 
+				    "UPDATE applications SET "+
+				    "check_out_date = ?, " +
+				    "status = ? " +
+				    "WHERE application_id = ?";
+		 
+		 public static final String UPDATE_APPLICATION_STATUS_BY_ID = 
+				    "UPDATE applications SET " +
+				    "status = ? " +
+				    "WHERE application_id = ?";
+
+		 public static final String UPDATE_ROOM_OCCUPANCY_AND_STATUS =
+				    "UPDATE rooms " +
+				    "SET current_occupancy = ?, " +
+				    " room_status = ? " +
+				    "WHERE room_number = ?";
+		 
+		 public static final String UPDATE_ROOM_DETAILS =
+				    "UPDATE rooms " +
+				    "SET room_number = ?, "+
+				    "room_type = ?, " +
+				    "floor = ?, " +
+				    "monthly_fee = ?, " +
+				    "room_status = ?, " +
+				    "room_facilities = ?, " +
+				    "room_description = ? " +
+				    "WHERE room_id = ?";
+
+		 public static final String UPDATE_ROOM_DETAILS_FOR_OCCUPIED =
+				    "UPDATE rooms " +
+				    "SET room_number = ?, "+
+				    "monthly_fee = ?, " +
+				    "room_facilities = ?, " +
+				    "room_description = ? " +
+				    "WHERE room_id = ?";
+		 
+		 public static final String INSERT_NOTICE = 
+				    "INSERT INTO Notice (title, message, type) VALUES (?, ?, ?)";
+		 
+			public static final String ADD_APPLICATION_USER_ROOM_WITH_NOTICE_ID = 
+				    "INSERT INTO user_associations ( notice_id, user_id) VALUES (?, ?)";
+
+
 
 }

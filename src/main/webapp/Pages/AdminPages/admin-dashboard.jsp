@@ -63,7 +63,7 @@
         </div>
         <div class="stat-card">
           <div class="stat-icon green">
-            <i class="fas fa-door-open"></i>
+    
           </div>
           <div class="stat-info">
             <h3>Vacant Rooms</h3>
@@ -128,7 +128,9 @@
 		    <tr>
 		      <td>${app.fullName}</td>
 		      <td>${app.gender}</td>
-		      <td>${app.contactNumber}</td>
+		      <td>${app.contactNumber}
+
+		      </td>
 		      <td>
 		        <c:choose>
 		          <c:when test="${app.status eq 'pending'}">
@@ -148,17 +150,32 @@
 		        </c:choose>
 		      </td>
 		      <td>
-		        <form action="ApplicationDetailsByIdServlet" method="get">
+			<form action="ApplicationDetailsByIdServlet" method="get">
 		          <input type="hidden" name="application_user_id" value="${app.applicationUserId}">
   				  <input type="hidden" name="user_id" value="${app.userId}">
 				  <button class="btn-icon" type="submit">
 				    <i class="fas fa-eye"></i>
 				  </button>
 				</form>
-
+				
+				
 		        <c:if test="${app.status eq 'pending'}">
+		        
+		        <form action="ApprovedApplicationServlet" method="post">
+		       		 <input type="hidden" name="application_id" value="${app.applicationId}">
 		          <button class="btn-icon success"><i class="fas fa-check"></i></button>
-		          <button class="btn-icon danger"><i class="fas fa-times"></i></button>
+		        </form>
+		        
+		        
+		        
+   		        <form action="RejectApplicationServlet" method="post" style="display:none">
+		       	 <input type="text" name="application_id" value="${app.applicationId}">
+	             <input type="text" name="roomNumber" value="${app.roomNumber}" style="display:none" />
+			     <input type="text" name="roomType" value="${app.roomType}" style="display:none" />
+			      <input type="text" name="currentOccupancy" value="${app.currentOccupancy}" style="display:none" />
+		            <button class="btn-icon danger"><i class="fas fa-times"></i></button>
+		        </form>
+		        
 		        </c:if>
 		      </td>
 		    </tr>

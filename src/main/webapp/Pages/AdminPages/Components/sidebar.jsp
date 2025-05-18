@@ -35,13 +35,13 @@
           <i class="fas fa-bed"></i>
           <span>Rooms</span>
         </a>
-        <a href="notifications.html" class="nav-item ${activePage == 'notifications' ? 'active' : ''}">
-          <i class="fas fa-bell"></i>
-          <span>Notifications</span>
+        <a href="${pageContext.request.contextPath}/Pages/AdminPages/notice.jsp" class="nav-item ${activePage == 'notices' ? 'active' : ''}">
+          <i class="fas fa-clipboard-list"></i>
+          <span>Notices</span>
         </a>
         <a href="rules.html" class="nav-item ${activePage == 'rules' ? 'active' : ''}">
           <i class="fas fa-gavel"></i>
-          <span>Rules</span>
+          <span>Report</span>
         </a>
         <a href="${pageContext.request.contextPath}/Pages/AdminPages/complaint-management.jsp" class="nav-item ${activePage == 'complaints' ? 'active' : ''}">
           <i class="fas fa-exclamation-circle"></i>

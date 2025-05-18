@@ -597,8 +597,8 @@
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
-    height: calc(100vh - 200px);
-    overflow-y: auto;
+    height: auto;
+    overflow: visible;
   }
   
   /* Notifications List */
@@ -610,12 +610,11 @@
   
   .notification-card {
     display: flex;
+    margin-top: 10px; 
     gap: 1rem;
     padding: 1rem;
     border-radius: 0.5rem;
     border: 1px solid #e5e7eb;
-    cursor: pointer;
-    transition: all 0.2s ease;
   }
   
   .notification-card:hover {
@@ -659,9 +658,8 @@
   
   /* Notification Detail */
   .notification-detail {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    height: auto;
+  overflow: visible; /
   }
   
   .detail-header {
@@ -680,8 +678,9 @@
   }
   
   .detail-content {
-    flex: 1;
-    overflow-y: auto;
+    flex: none;
+  height: auto;
+  overflow: visible;
   }
   
   .detail-text {

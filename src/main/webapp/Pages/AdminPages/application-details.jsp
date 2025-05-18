@@ -83,7 +83,7 @@ color: #1e3a8a;
 		    <div class="details-grid">
 		      <div class="detail-item"><span class="label">Full Name</span><span class="value">${app.fullName}</span></div>
 		      <div class="detail-item"><span class="label">Gender</span><span class="value">${app.gender}</span></div>
-		      <div class="detail-item"><span class="label">Date of Birth</span><span class="value">${app.dateOfBirth}</span></div>
+		      <div class="detail-item"><span class="label">Date of Birth</span><span class="value"> <fmt:formatDate value="${app.dateOfBirth}" pattern="MMMM dd, yyyy" /></span></div>
 		      <div class="detail-item"><span class="label">Email</span><span class="value">${app.email}</span></div>
 		      <div class="detail-item"><span class="label">Phone</span><span class="value">${app.contactNumber}</span></div>
 		      <div class="detail-item"><span class="label">Address</span><span class="value">${app.address}</span></div>
@@ -97,6 +97,11 @@ color: #1e3a8a;
 		      <div class="detail-item"><span class="label">Room Number</span><span class="value">${app.roomNumber}</span></div>
 		      <div class="detail-item"><span class="label">Duration</span><span class="value">${app.durationOfStay}</span></div>
 		      <div class="detail-item"><span class="label">Special Requests</span><span class="value">${app.specialRequests}</span></div>
+		      <div class="detail-item"><span class="label">Expected Check In Date </span><span class="value"> <fmt:formatDate value="${app.expectedCheckIn}" pattern="MMMM dd, yyyy" /></span></div>
+		        <c:if test="${not empty app.checkOutDate}">
+		        <div class="detail-item"><span class="label">Check Out Date </span><span class="value"> <fmt:formatDate value="${app.checkOutDate}" pattern="MMMM dd, yyyy" /></span></div>
+			    </c:if>
+		    
 		    </div>
 		  </div>
 		
@@ -117,14 +122,32 @@ color: #1e3a8a;
 		        <a href="${pageContext.request.contextPath}/Pages/AdminPages/application-management.jsp">
 		  <button class="btn btn-outline">Close</button>
 		</a>
+		
+		
 
         <c:if test="${app.status eq 'pending'}">
-		         <button class="btn btn-danger">Reject</button>
-        		<button class="btn btn-success">Approve</button>
+       
+        		<form action="RejectApplicationServlet" method="post" style="display:none">
+		       	 <input type="text" name="application_id" value="${app.applicationId}">
+	             <input type="text" name="roomNumber" value="${app.roomNumber}" style="display:none" />
+			     <input type="text" name="roomType" value="${app.roomType}" style="display:none" />
+			      <input type="text" name="currentOccupancy" value="${app.currentOccupancy}" style="display:none" />
+		            <button class="btn btn-danger">Reject</button>
+		        </form>
+		        
+		                 <form action="ApprovedApplicationServlet" method="post">
+		       		 <input type="hidden" name="application_id" value="${app.applicationId}">
+		          <button class="btn btn-success">Approve</button>
+		        </form>
+        		
 		 </c:if>
 		 
 		 <c:if test="${app.status eq 'approved'}">
-		         <button class="btn btn-primary">Checkout</button>
+		  <a href="${pageContext.request.contextPath}/Pages/AdminPages/check-out.jsp?applicationId=${app.applicationId}&checkInDate=${app.expectedCheckIn}&roomNumber=${app.roomNumber}&roomType=${app.roomType}&currentOccupancy=${app.currentOccupancy}">
+			    <button class="btn btn-primary">Checkout</button>
+			</a>
+
+		        
 		 </c:if>
  
  

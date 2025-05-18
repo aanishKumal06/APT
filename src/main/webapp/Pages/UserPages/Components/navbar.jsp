@@ -29,37 +29,17 @@
 		<li><a href="${pageContext.request.contextPath}/Pages/UserPages/hostel-rules.jsp" class="nav-link ${activePage == 'rules' ? 'active' : ''}">Rules</a></li>
 		<li><a href="#" class="nav-link ${activePage == 'about' ? 'active' : ''}">About us</a></li>
 
-          <li class="notification-icon">
-            <div class="notification-container">
-              <span class="notification-count">-</span>
-              <i class="fas fa-bell"></i>
-              <div class="notification-dropdown">
-                <div class="notification-item">
-                  <h4>Room Inspection</h4>
-                  <p>Room inspection scheduled for tomorrow at 10 AM.</p>
-                  <small>1 hour ago</small>
-                </div>
-                <div class="notification-item">
-                  <h4>Fees Reminder</h4>
-                  <p>Your next payment is due in 5 days.</p>
-                  <small>Yesterday</small>
-                </div>
-                <div class="notification-item">
-                  <h4>New Amenity</h4>
-                  <p>New gym equipment has been installed.</p>
-                  <small>2 days ago</small>
-                </div>
-              </div>
-            </div>
-          </li>
+          
           <li class="profile-icon">
             <div class="profile-container">
-              <img src="${pageContext.request.contextPath}/img/profile.jpg" alt="Profile" class="mini-profile-pic">
+       
+           	 <a href="#" class="nav-link ${activePage == 'profile' ? 'active' : ''}">My Profile</a>
+   
               <div class="profile-dropdown">
                 <div class="profile-header">
-                  <img src="${pageContext.request.contextPath}/img/profile.jpg" alt="Profile" class="mini-profile-pic">
+ 
                   <div>
-                    <h4>Hema Gurung</h4>
+                   <h4>${sessionScope.currentUser.fullName}</h4>
                   
                   </div>
                 </div>
@@ -71,7 +51,8 @@
 					    <button type="submit">Logout</button>
 					  </form>
 					</li>
-
+				</ul>
+            </div>
             </div>
           </li>
         </ul>

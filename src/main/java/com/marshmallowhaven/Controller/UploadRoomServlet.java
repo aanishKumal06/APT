@@ -37,6 +37,7 @@ public class UploadRoomServlet extends HttpServlet {
 		String roomStatus = request.getParameter("roomStatus");
 		String description = request.getParameter("description");
 		int monthlyFeeInt = 0;
+		
 
 		// Facilities can be multiple, use getParameterValues
 		String[] facilities = request.getParameterValues("facilities");
@@ -57,6 +58,10 @@ public class UploadRoomServlet extends HttpServlet {
 		if (roomNumber == null || roomNumber.trim().isEmpty()) {
 		    addRoomErrors.add("Room number is required.");
 		    System.out.println("File not 1234443");
+		}
+		
+		if (roomNumber.length() >= 10) {
+			addRoomErrors.add("Room number must be 10 digits or fewer.");
 		}
 		
 		try {
@@ -81,6 +86,14 @@ public class UploadRoomServlet extends HttpServlet {
 		    addRoomErrors.add("Room floor is required.");
 		}
 
+		if (monthlyFee == null ) {
+		    addRoomErrors.add("Monthly fee is required.");
+		}
+		
+		if (monthlyFee.length() >= 10) {
+			addRoomErrors.add("Monthly fee  must be 10 digits or fewer.");
+		}
+		
 		try {
 		    monthlyFeeInt = Integer.parseInt(request.getParameter("monthlyFee"));
 		    if (monthlyFeeInt < 1) {
@@ -101,7 +114,7 @@ public class UploadRoomServlet extends HttpServlet {
 		}
 
 		if (description == null || description.trim().isEmpty()) {
-		    addRoomErrors.add("Room number is required.");
+		    addRoomErrors.add("Room description is required.");
 		    System.out.println("File not 1234443");
 		}
 		
@@ -168,7 +181,7 @@ public class UploadRoomServlet extends HttpServlet {
 				 boolean isRegistered = addroom.addRoom(room);
 
 			        if (isRegistered) {
-			        	 request.setAttribute("successMessage", "Room successfully updated.");
+			        	 request.setAttribute("successMessage", "Room successfully added.");
 			        	 request.getRequestDispatcher("/Pages/AdminPages/add-room.jsp").forward(request, response);
 			            
 			        } else {

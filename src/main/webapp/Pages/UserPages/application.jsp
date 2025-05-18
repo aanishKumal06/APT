@@ -131,45 +131,30 @@
               <input type="text" name="fullname" class="form-control" required>
             </div>
             
-            <div class="form-group">
-              <label for="Username">Username *</label>
-              <input type="text" name="Username" class="form-control" required>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" name="email" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
+          <div class="form-group">
               <label for="phone">Contact Number *</label>
               <input type="tel" name="phone" class="form-control" required>
             </div>
+            
           </div>
           
           <div class="form-row">
-            <div class="form-group">
-              <label for="gender">Gender *</label>
-              <select name="gender" class="form-control" required>
-                <option value="" disabled selected>Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            
-            <div class="form-group">
+          <div class="form-group">
               <label for="dob">Date of Birth *</label>
               <input type="date" name="dob" class="form-control" required>
             </div>
+            
+  
+     		 <div class="form-group">
+            <label for="address">Permanent Address *</label>
+            <input type="text" name="address" class="form-control"  required></input>
           </div>
           
-          <div class="form-group">
-            <label for="address">Permanent Address *</label>
-            <textarea name="address" class="form-control" rows="3" required></textarea>
           </div>
+          
+        
+          
+      
           
           <div class="form-group">
             <h3>Emergency Contact</h3>
